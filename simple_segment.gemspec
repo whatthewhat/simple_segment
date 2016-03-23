@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Mikhail Topolskiy"]
   spec.email         = ["mikhail.topolskiy@gmail.com"]
 
-  spec.summary       = %q{Simple synchronous API client for segment.io.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{A simple synchronous API client for segment.io.}
+  spec.description   = %q{SimpleSegment allows for manual control of when and how the events are sent to Segment.}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 

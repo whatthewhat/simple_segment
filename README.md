@@ -1,8 +1,33 @@
 # SimpleSegment
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/simple_segment`. To experiment with that code, run `bin/console` for an interactive prompt.
+**Warning** The project is in development and is not ready for production use yet!
 
-TODO: Delete this and the text above, and describe your gem
+A simple synchronous Ruby API client for [segment.io](segment.io).
+
+SimpleSegment allows for manual control of when and how the events are sent to Segment. This can be useful if you want to leverage an existing queueing system like Sidekiq or Resque for sending events or need to send events synchronously. If this is not the case you will be better off using the [official segment gem](https://github.com/segmentio/analytics-ruby) that handles queuing for you.
+
+## Status
+
+### Implemented
+*Nothing yet :)*
+
+### Planned
+
+The plan is to be an drop in replacement for the official gem, so all the APIs will stay the same whenever possible.
+
+```ruby
+analytics = SimpleSegment::Client.new({
+  write_key: 'YOUR_WRITE_KEY'
+})
+```
+
+- `analytics.track(...)`
+- `analytics.identify(...)`
+- `analytics.group(...)`
+- `analytics.page(...)`
+- `analytics.alias(...)`
+- `analytics.flush` - no op for backwards compatibility with the official gem
+- Ability to manually batch events, https://segment.com/docs/libraries/http/#import
 
 ## Installation
 
@@ -38,4 +63,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
