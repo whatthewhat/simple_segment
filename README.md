@@ -11,25 +11,21 @@ SimpleSegment allows for manual control of when and how the events are sent to S
 ## Status
 
 ### Implemented
-*Nothing yet :)*
-
-### Planned
-
-The plan is to be an drop in replacement for the official gem, so all the APIs will stay the same whenever possible.
-
-```ruby
-analytics = SimpleSegment::Client.new({
-  write_key: 'YOUR_WRITE_KEY'
-})
-```
 
 - `analytics.track(...)`
 - `analytics.identify(...)`
 - `analytics.group(...)`
 - `analytics.page(...)`
 - `analytics.alias(...)`
-- `analytics.flush` - no op for backwards compatibility with the official gem
+- `analytics.flush` (no op for backwards compatibility with the official gem)
+
+### Planned
+
 - Ability to manually batch events, https://segment.com/docs/libraries/http/#import
+- Configurable network error handling
+- Configurable logging
+
+The plan is to be an drop in replacement for the official gem, so all the APIs will stay the same whenever possible.
 
 ## Installation
 
@@ -49,7 +45,26 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create a client instance:
+
+```ruby
+analytics = SimpleSegment::Client.new({
+  write_key: 'YOUR_WRITE_KEY'
+})
+```
+
+Use it as you would use `analytics-ruby`:
+
+```ruby
+analytics.track(
+  {
+    user_id: user.id,
+    event: 'Created Account'
+  }
+)
+```
+
+If you find inconsistencies with `analytics-ruby` feel free to file an issue.
 
 ## Development
 

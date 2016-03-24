@@ -1,5 +1,7 @@
-require "simple_segment/version"
+require 'net/http'
+require 'json'
+require 'simple_segment/version'
+require 'simple_segment/client'
 
 module SimpleSegment
-  # Your code goes here...
 end
