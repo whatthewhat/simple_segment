@@ -7,7 +7,7 @@ describe SimpleSegment::Client do
 
   describe '#identify' do
     it 'sends identity and properties to segment' do
-      now = Time.new(2017,1,1)
+      now = Time.new(2999,12,29)
       options = {
         user_id: 'id',
         traits: {
@@ -66,7 +66,7 @@ describe SimpleSegment::Client do
 
   describe '#track' do
     it 'sends event and properties to segment' do
-      now = Time.new(2017,1,1)
+      now = Time.new(2999,12,29)
       options = {
         event: 'Delivered Package',
         user_id: 'id',
@@ -131,7 +131,7 @@ describe SimpleSegment::Client do
 
   describe '#page' do
     it 'sends page info to segment' do
-      now = Time.new(2017,1,1)
+      now = Time.new(2999,12,29)
       options = {
         user_id: 'id',
         name: 'Zoidberg',
@@ -190,7 +190,7 @@ describe SimpleSegment::Client do
 
   describe '#group' do
     it 'sends group info to segment' do
-      now = Time.new(2017,1,1)
+      now = Time.new(2999,12,29)
       options = {
         user_id: 'id',
         group_id: 'group_id',
@@ -253,7 +253,7 @@ describe SimpleSegment::Client do
 
   describe '#alias' do
     it 'sends alias info to segment' do
-      now = Time.new(2017,1,1)
+      now = Time.new(2999,12,29)
       options = {
         user_id: 'id',
         previous_id: 'previous_id',
