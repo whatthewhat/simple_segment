@@ -2,6 +2,8 @@
 
 **Warning** The project is in development and is not ready for production use yet!
 
+[![Build Status](https://travis-ci.org/whatthewhat/simple_segment.svg?branch=master)](https://travis-ci.org/whatthewhat/simple_segment)
+
 A simple synchronous Ruby API client for [segment.io](segment.io).
 
 SimpleSegment allows for manual control of when and how the events are sent to Segment. This can be useful if you want to leverage an existing queueing system like Sidekiq or Resque for sending events or need to send events synchronously. If this is not the case you will be better off using the [official segment gem](https://github.com/segmentio/analytics-ruby) that handles queuing for you.
