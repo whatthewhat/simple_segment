@@ -6,15 +6,14 @@ module SimpleSegment
       'accept' => 'application/json'
     }.freeze
 
-    attr_reader :path, :headers, :write_key
+    attr_reader :path, :write_key
 
-    def initialize(path, write_key:, headers: DEFAULT_HEADERS)
+    def initialize(path, config)
       @path = path
-      @headers = headers
-      @write_key = write_key
+      @write_key = config.write_key
     end
 
-    def post(payload = {})
+    def post(payload, headers: DEFAULT_HEADERS)
       uri = URI(BASE_URL)
       Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
         payload = JSON.generate(payload)
