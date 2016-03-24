@@ -30,7 +30,11 @@ describe SimpleSegment::Client do
           'occupation' => 'Delivery Boy'
         },
         'context' => {
-          'employer' => 'Planet Express'
+          'employer' => 'Planet Express',
+          'library' => {
+            'name' => 'simple_segment',
+            'version' => SimpleSegment::VERSION
+          }
         },
         'integrations' => {
           'all' => true
@@ -91,7 +95,11 @@ describe SimpleSegment::Client do
           'delivery_to' => 'Robots of Chapek 9'
         },
         'context' => {
-          'crew' => %w(Bender Fry Leela)
+          'crew' => %w(Bender Fry Leela),
+          'library' => {
+            'name' => 'simple_segment',
+            'version' => SimpleSegment::VERSION
+          }
         },
         'integrations' => {
           'all' => true
@@ -154,7 +162,11 @@ describe SimpleSegment::Client do
           'url' => 'https://en.wikipedia.org/wiki/Zoidberg'
         },
         'context' => {
-          'company' => 'Planet Express'
+          'company' => 'Planet Express',
+          'library' => {
+            'name' => 'simple_segment',
+            'version' => SimpleSegment::VERSION
+          }
         },
         'integrations' => {
           'all' => true
@@ -213,7 +225,11 @@ describe SimpleSegment::Client do
           'name' => 'Planet Express'
         },
         'context' => {
-          'locale' => 'AL1'
+          'locale' => 'AL1',
+          'library' => {
+            'name' => 'simple_segment',
+            'version' => SimpleSegment::VERSION
+          }
         },
         'integrations' => {
           'all' => true
@@ -270,7 +286,11 @@ describe SimpleSegment::Client do
         'anonymousId' => nil,
         'previousId' => 'previous_id',
         'context' => {
-          'locale' => 'AL1'
+          'locale' => 'AL1',
+          'library' => {
+            'name' => 'simple_segment',
+            'version' => SimpleSegment::VERSION
+          }
         },
         'integrations' => {
           'all' => true

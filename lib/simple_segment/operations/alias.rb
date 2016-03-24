@@ -7,19 +7,12 @@ module SimpleSegment
 
       private
 
-      def build_payload(current_time = Time.now)
-        check_identity!
+      def build_payload
         raise ArgumentError, 'previous_id must be present' unless options[:previous_id]
 
-        {
-          userId: options[:user_id],
-          anonymousId: options[:anonymous_id],
-          previousId: options[:previous_id],
-          context: options[:context],
-          integrations: options[:integrations],
-          timestamp: options.fetch(:timestamp, current_time).iso8601,
-          sentAt: current_time.iso8601
-        }
+        base_payload.merge({
+          previousId: options[:previous_id]
+        })
       end
     end
   end
