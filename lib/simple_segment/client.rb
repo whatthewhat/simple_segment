@@ -70,5 +70,9 @@ module SimpleSegment
     def alias(options)
       Operations::Alias.new(symbolize_keys(options), config).call
     end
+
+    # A no op, added for backwards compatibility with `analytics-ruby`
+    def flush
+    end
   end
 end

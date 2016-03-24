@@ -307,4 +307,10 @@ describe SimpleSegment::Client do
       end
     end
   end
+
+  describe '#flush' do
+    it 'does not blow up' do
+      expect { client.flush }.not_to raise_error
+    end
+  end
 end
