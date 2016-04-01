@@ -1,6 +1,7 @@
 require 'simple_segment/utils'
 require 'simple_segment/configuration'
 require 'simple_segment/operations'
+require 'simple_segment/batch'
 
 module SimpleSegment
   class Client
@@ -69,6 +70,12 @@ module SimpleSegment
     # @option :timestamp [#iso8601] (Time.now)
     def alias(options)
       Operations::Alias.new(symbolize_keys(options), config).call
+    end
+
+    def batch
+      batch = Batch.new(config)
+      yield(batch)
+      batch.commit
     end
 
     # A no op, added for backwards compatibility with `analytics-ruby`

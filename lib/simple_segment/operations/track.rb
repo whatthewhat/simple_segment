@@ -5,8 +5,6 @@ module SimpleSegment
         Request.new('/v1/track', config).post(build_payload)
       end
 
-      private
-
       def build_payload
         raise ArgumentError, 'event name must be present' unless options[:event]
 

@@ -5,8 +5,6 @@ module SimpleSegment
         Request.new('/v1/group', config).post(build_payload)
       end
 
-      private
-
       def build_payload
         raise ArgumentError, 'group_id must be present' unless options[:group_id]
 
