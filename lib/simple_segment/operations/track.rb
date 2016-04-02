@@ -7,7 +7,7 @@ module SimpleSegment
 
       private
 
-      def build_payload(current_time = Time.now)
+      def build_payload
         raise ArgumentError, 'event name must be present' unless options[:event]
 
         base_payload.merge({

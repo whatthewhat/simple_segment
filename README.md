@@ -22,7 +22,6 @@ SimpleSegment allows for manual control of when and how the events are sent to S
 ### Planned
 
 - Ability to manually batch events, https://segment.com/docs/libraries/http/#import
-- Configurable network error handling
 - Configurable logging
 
 The plan is to be an drop in replacement for the official gem, so all the APIs will stay the same whenever possible.
@@ -49,7 +48,10 @@ Create a client instance:
 
 ```ruby
 analytics = SimpleSegment::Client.new({
-  write_key: 'YOUR_WRITE_KEY'
+  write_key: 'YOUR_WRITE_KEY', # required
+  on_error: proc { |error_code, error_body, response, exception|
+    # defaults to an empty proc
+  }
 })
 ```
 
