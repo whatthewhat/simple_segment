@@ -5,8 +5,6 @@ module SimpleSegment
         Request.new('/v1/identify', config).post(build_payload)
       end
 
-      private
-
       def build_payload
         base_payload.merge({
           traits: options[:traits]

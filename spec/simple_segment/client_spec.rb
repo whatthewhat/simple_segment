@@ -4,10 +4,10 @@ describe SimpleSegment::Client do
   subject(:client) {
     described_class.new(write_key: 'WRITE_KEY')
   }
+  let(:now) { Time.new(2999,12,29) }
 
   describe '#identify' do
     it 'sends identity and properties to segment' do
-      now = Time.new(2999,12,29)
       options = {
         user_id: 'id',
         traits: {
@@ -70,7 +70,6 @@ describe SimpleSegment::Client do
 
   describe '#track' do
     it 'sends event and properties to segment' do
-      now = Time.new(2999,12,29)
       options = {
         event: 'Delivered Package',
         user_id: 'id',
@@ -139,7 +138,6 @@ describe SimpleSegment::Client do
 
   describe '#page' do
     it 'sends page info to segment' do
-      now = Time.new(2999,12,29)
       options = {
         user_id: 'id',
         name: 'Zoidberg',
@@ -202,7 +200,6 @@ describe SimpleSegment::Client do
 
   describe '#group' do
     it 'sends group info to segment' do
-      now = Time.new(2999,12,29)
       options = {
         user_id: 'id',
         group_id: 'group_id',
@@ -269,7 +266,6 @@ describe SimpleSegment::Client do
 
   describe '#alias' do
     it 'sends alias info to segment' do
-      now = Time.new(2999,12,29)
       options = {
         user_id: 'id',
         previous_id: 'previous_id',
@@ -331,6 +327,19 @@ describe SimpleSegment::Client do
   describe '#flush' do
     it 'does not blow up' do
       expect { client.flush }.not_to raise_error
+    end
+  end
+
+  describe '#batch' do
+    it 'batches events into a single request' do
+      request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/import').
+        with { |request| JSON.parse(request.body)['batch'].length == 2 }
+      client.batch do |analytics|
+        analytics.identify(user_id: 'id')
+        analytics.track(event: 'Delivered Package', user_id: 'id')
+      end
+
+      expect(request_stub).to have_been_requested.once
     end
   end
 end
