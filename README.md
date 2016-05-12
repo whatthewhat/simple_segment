@@ -1,7 +1,5 @@
 # SimpleSegment
 
-**Warning** The project is in development and is not ready for production use yet!
-
 [![Build Status](https://travis-ci.org/whatthewhat/simple_segment.svg?branch=master)](https://travis-ci.org/whatthewhat/simple_segment)
 
 A simple synchronous Ruby API client for [segment.io](segment.io).
@@ -18,13 +16,12 @@ SimpleSegment allows for manual control of when and how the events are sent to S
 - `analytics.page(...)`
 - `analytics.alias(...)`
 - `analytics.flush` (no op for backwards compatibility with the official gem)
+- Ability to manually batch events with `analytics.batch`
 
-### Planned
-
-- Ability to manually batch events, https://segment.com/docs/libraries/http/#import
-- Configurable logging
+[List of planned features](https://github.com/whatthewhat/simple_segment/issues?q=is%3Aissue+is%3Aopen+label%3Afeature)
 
 The plan is to be an drop in replacement for the official gem, so all the APIs will stay the same whenever possible.
+
 
 ## Installation
 
@@ -67,6 +64,21 @@ analytics.track(
 ```
 
 If you find inconsistencies with `analytics-ruby` feel free to file an issue.
+
+### Batching
+
+You can manually batch events with `analytics.batch`:
+
+```ruby
+analytics.batch do |batch|
+  batch.context = {...}       # shared context for all events
+  batch.integrations = {...}  # shared integrations hash for all events
+  batch.identify(...)
+  batch.track(...)
+  batch.track(...)
+  ...
+end
+```
 
 ## Development
 
