@@ -30,7 +30,7 @@ module SimpleSegment
           anonymousId: options[:anonymous_id],
           context: DEFAULT_CONTEXT.merge(options[:context].to_h),
           integrations: options[:integrations],
-          timestamp: options.fetch(:timestamp, current_time).iso8601,
+          timestamp: timestamp(options.fetch(:timestamp, current_time)),
           sentAt: current_time.iso8601
         }
       end
@@ -38,6 +38,14 @@ module SimpleSegment
       def check_identity!
         unless options[:user_id] || options[:anonymous_id]
           raise ArgumentError, 'user_id or anonymous_id must be present'
+        end
+      end
+
+      def timestamp(timestamp)
+        if timestamp.respond_to?(:iso8601)
+          timestamp.iso8601
+        else
+          Time.iso8601(timestamp)
         end
       end
     end

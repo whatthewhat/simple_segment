@@ -65,6 +65,12 @@ describe SimpleSegment::Client do
           client.identify(anonymous_id: 'id')
         }.not_to raise_error
       end
+
+      it 'allows timestamp to be a string' do
+        expect {
+          client.identify(anonymous_id: 'id', timestamp: Time.new(2016,3,23).iso8601.to_s)
+        }.not_to raise_error
+      end
     end
   end
 
