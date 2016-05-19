@@ -67,4 +67,20 @@ describe SimpleSegment::Batch do
       batch.commit
     }.to raise_error(ArgumentError)
   end
+
+  it 'can be serialized and deserialized' do
+    request_stub = stub_request(:post, 'https://key:@api.segment.io/v1/import').
+      with { |request|
+        batch = JSON.parse(request.body)['batch']
+        batch.map { |operation| operation['action'] } == %w(identify track)
+      }
+
+    batch = described_class.new(client)
+    batch.identify(user_id: 'id')
+    batch.track(event: 'Delivered Package', user_id: 'id')
+    serialized_batch = batch.serialize
+    described_class.deserialize(client, serialized_batch).commit
+
+    expect(request_stub).to have_been_requested.once
+  end
 end

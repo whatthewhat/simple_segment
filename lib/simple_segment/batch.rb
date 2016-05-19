@@ -3,13 +3,14 @@ module SimpleSegment
     include SimpleSegment::Utils
 
     attr_reader :client, :payload
-    attr_accessor :context, :integrations
 
-    def initialize(client)
+    def self.deserialize(client, payload)
+      new(client, symbolize_keys(payload))
+    end
+
+    def initialize(client, payload = { batch: [] })
       @client = client
-      @payload = { batch: [] }
-      @context = {}
-      @integrations = {}
+      @payload = payload
     end
 
     def identify(options)
@@ -28,12 +29,22 @@ module SimpleSegment
       add(Operations::Group, options, __method__)
     end
 
+    def context=(context)
+      payload[:context] = context
+    end
+
+    def integrations=(integrations)
+      payload[:integrations] = integrations
+    end
+
+    def serialize
+      payload
+    end
+
     def commit
       if payload[:batch].length == 0
         raise ArgumentError, 'A batch must contain at least one action'
       end
-      payload[:context] = context
-      payload[:integrations] = integrations
 
       Request.new(client).post('/v1/import', payload)
     end
