@@ -72,6 +72,15 @@ module SimpleSegment
       Operations::Alias.new(self, symbolize_keys(options)).call
     end
 
+    # @yield [batch] Yields a special batch object that can be used to group
+    #                `identify`, `track`, `page` and `group` calls into a
+    #                single API request.
+    # @example
+    #   client.batch do |analytics|
+    #     analytics.context = { 'foo' => 'bar' }
+    #     analytics.identify(user_id: 'id')
+    #     analytics.track(event: 'Delivered Package', user_id: 'id')
+    #   end
     def batch
       batch = Batch.new(self)
       yield(batch)
