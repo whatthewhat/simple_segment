@@ -2,11 +2,11 @@ module SimpleSegment
   class Batch
     include SimpleSegment::Utils
 
-    attr_reader :config, :payload
+    attr_reader :client, :payload
     attr_accessor :context, :integrations
 
-    def initialize(config)
-      @config = config
+    def initialize(client)
+      @client = client
       @payload = { batch: [] }
       @context = {}
       @integrations = {}
@@ -35,13 +35,13 @@ module SimpleSegment
       payload[:context] = context
       payload[:integrations] = integrations
 
-      Request.new('/v1/import', config).post(payload)
+      Request.new(client).post('/v1/import', payload)
     end
 
     private
 
     def add(operation_class, options, action)
-      operation = operation_class.new(symbolize_keys(options), config)
+      operation = operation_class.new(client, symbolize_keys(options))
       operation_payload = operation.build_payload
       operation_payload[:action] = action
       payload[:batch] << operation_payload
