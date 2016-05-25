@@ -6,15 +6,14 @@ module SimpleSegment
       'accept' => 'application/json'
     }.freeze
 
-    attr_reader :path, :write_key, :error_handler
+    attr_reader :write_key, :error_handler
 
-    def initialize(path, config)
-      @path = path
-      @write_key = config.write_key
-      @error_handler = config.on_error
+    def initialize(client)
+      @write_key = client.config.write_key
+      @error_handler = client.config.on_error
     end
 
-    def post(payload, headers: DEFAULT_HEADERS)
+    def post(path, payload, headers: DEFAULT_HEADERS)
       response, status_code, response_body = nil, nil, nil
       uri = URI(BASE_URL)
       payload = JSON.generate(payload)

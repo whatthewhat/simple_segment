@@ -7,10 +7,10 @@ describe SimpleSegment::Request do
         to_return(status: 500, body: { error: 'Does not compute' }.to_json)
     }
 
-    it 'does not raise an error with default config' do
-      config = SimpleSegment::Configuration.new(write_key: 'key')
+    it 'does not raise an error with default client' do
+      client = SimpleSegment::Client.new(write_key: 'key')
       expect {
-        described_class.new('/v1/track', config).post({})
+        described_class.new(client).post('/v1/track', {})
       }.not_to raise_error
     end
 
@@ -22,11 +22,11 @@ describe SimpleSegment::Request do
         response = res
         exception = e
       }
-      config = SimpleSegment::Configuration.new(
+      client = SimpleSegment::Client.new(
         write_key: 'key',
         on_error: error_handler
       )
-      described_class.new('/v1/track', config).post({})
+      described_class.new(client).post('/v1/track', {})
 
       expect(error_code).to eq('500')
       expect(error_body).to eq({ error: 'Does not compute' }.to_json)

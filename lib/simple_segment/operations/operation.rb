@@ -8,11 +8,11 @@ module SimpleSegment
         }
       }.freeze
 
-      attr_reader :options, :config
+      attr_reader :options, :request
 
-      def initialize(options = {}, config)
+      def initialize(client, options = {})
         @options = options
-        @config = config
+        @request = Request.new(client)
       end
 
       def call

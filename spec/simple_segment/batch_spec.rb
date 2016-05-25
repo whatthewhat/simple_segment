@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SimpleSegment::Batch do
-  let(:config) { SimpleSegment::Configuration.new(write_key: 'key') }
+  let(:client) { SimpleSegment::Client.new(write_key: 'key') }
 
   it 'supports identify, group, track and page' do
     request_stub = stub_request(:post, 'https://key:@api.segment.io/v1/import').
@@ -10,7 +10,7 @@ describe SimpleSegment::Batch do
         batch.map { |operation| operation['action'] } == %w(identify group track page)
       }
 
-    batch = described_class.new(config)
+    batch = described_class.new(client)
     batch.identify(user_id: 'id')
     batch.group(user_id: 'id', group_id: 'group_id')
     batch.track(event: 'Delivered Package', user_id: 'id')
@@ -28,7 +28,7 @@ describe SimpleSegment::Batch do
         context == expected_context
       }
 
-    batch = described_class.new(config)
+    batch = described_class.new(client)
     batch.context = expected_context
     batch.track(event: 'Delivered Package', user_id: 'id')
     batch.commit
@@ -44,7 +44,7 @@ describe SimpleSegment::Batch do
         integrations == expected_integrations
       }
 
-    batch = described_class.new(config)
+    batch = described_class.new(client)
     batch.integrations = expected_integrations
     batch.track(event: 'Delivered Package', user_id: 'id')
     batch.commit
@@ -53,7 +53,7 @@ describe SimpleSegment::Batch do
   end
 
   it 'validates event payload' do
-    batch = described_class.new(config)
+    batch = described_class.new(client)
 
     expect {
       batch.track(event: nil)
@@ -61,10 +61,26 @@ describe SimpleSegment::Batch do
   end
 
   it 'errors when trying to commit an empty batch' do
-    batch = described_class.new(config)
+    batch = described_class.new(client)
 
     expect {
       batch.commit
     }.to raise_error(ArgumentError)
+  end
+
+  it 'can be serialized and deserialized' do
+    request_stub = stub_request(:post, 'https://key:@api.segment.io/v1/import').
+      with { |request|
+        batch = JSON.parse(request.body)['batch']
+        batch.map { |operation| operation['action'] } == %w(identify track)
+      }
+
+    batch = described_class.new(client)
+    batch.identify(user_id: 'id')
+    batch.track(event: 'Delivered Package', user_id: 'id')
+    serialized_batch = batch.serialize
+    described_class.deserialize(client, serialized_batch).commit
+
+    expect(request_stub).to have_been_requested.once
   end
 end

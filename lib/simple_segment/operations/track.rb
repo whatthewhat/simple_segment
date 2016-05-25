@@ -2,7 +2,7 @@ module SimpleSegment
   module Operations
     class Track < Operation
       def call
-        Request.new('/v1/track', config).post(build_payload)
+        request.post('/v1/track', build_payload)
       end
 
       def build_payload

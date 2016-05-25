@@ -2,7 +2,7 @@ module SimpleSegment
   module Operations
     class Page < Operation
       def call
-        Request.new('/v1/page', config).post(build_payload)
+        request.post('/v1/page', build_payload)
       end
 
       def build_payload

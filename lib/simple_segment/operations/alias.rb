@@ -2,7 +2,7 @@ module SimpleSegment
   module Operations
     class Alias < Operation
       def call
-        Request.new('/v1/alias', config).post(build_payload)
+        request.post('/v1/alias', build_payload)
       end
 
       def build_payload

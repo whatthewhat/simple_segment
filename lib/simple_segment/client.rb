@@ -21,7 +21,7 @@ module SimpleSegment
     # @option :integrations [Hash]
     # @option :timestamp [#iso8601] (Time.now)
     def identify(options)
-      Operations::Identify.new(symbolize_keys(options), config).call
+      Operations::Identify.new(self, symbolize_keys(options)).call
     end
 
     # @param [Hash] options
@@ -33,7 +33,7 @@ module SimpleSegment
     # @option :integrations [Hash]
     # @option :timestamp [#iso8601] (Time.now)
     def track(options)
-      Operations::Track.new(symbolize_keys(options), config).call
+      Operations::Track.new(self, symbolize_keys(options)).call
     end
 
     # @param [Hash] options
@@ -45,7 +45,7 @@ module SimpleSegment
     # @option :integrations [Hash]
     # @option :timestamp [#iso8601] (Time.now)
     def page(options)
-      Operations::Page.new(symbolize_keys(options), config).call
+      Operations::Page.new(self, symbolize_keys(options)).call
     end
 
     # @param [Hash] options
@@ -57,7 +57,7 @@ module SimpleSegment
     # @option :integrations [Hash]
     # @option :timestamp [#iso8601] (Time.now)
     def group(options)
-      Operations::Group.new(symbolize_keys(options), config).call
+      Operations::Group.new(self, symbolize_keys(options)).call
     end
 
     # @param [Hash] options
@@ -69,11 +69,20 @@ module SimpleSegment
     # @option :integrations [Hash]
     # @option :timestamp [#iso8601] (Time.now)
     def alias(options)
-      Operations::Alias.new(symbolize_keys(options), config).call
+      Operations::Alias.new(self, symbolize_keys(options)).call
     end
 
+    # @yield [batch] Yields a special batch object that can be used to group
+    #                `identify`, `track`, `page` and `group` calls into a
+    #                single API request.
+    # @example
+    #   client.batch do |analytics|
+    #     analytics.context = { 'foo' => 'bar' }
+    #     analytics.identify(user_id: 'id')
+    #     analytics.track(event: 'Delivered Package', user_id: 'id')
+    #   end
     def batch
-      batch = Batch.new(config)
+      batch = Batch.new(self)
       yield(batch)
       batch.commit
     end

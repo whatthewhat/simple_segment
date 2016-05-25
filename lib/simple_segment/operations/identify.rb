@@ -2,7 +2,7 @@ module SimpleSegment
   module Operations
     class Identify < Operation
       def call
-        Request.new('/v1/identify', config).post(build_payload)
+        request.post('/v1/identify', build_payload)
       end
 
       def build_payload
