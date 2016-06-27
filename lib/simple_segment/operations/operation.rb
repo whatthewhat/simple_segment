@@ -45,7 +45,7 @@ module SimpleSegment
         if timestamp.respond_to?(:iso8601)
           timestamp.iso8601
         else
-          Time.iso8601(timestamp)
+          Time.iso8601(timestamp).iso8601
         end
       end
     end
