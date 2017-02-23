@@ -33,5 +33,13 @@ describe SimpleSegment::Operations::Track do
         ).build_payload
       }.to raise_error(ArgumentError)
     end
+
+    it 'works with stubed calls' do
+      stubed_client = SimpleSegment::Client.new(write_key: 'key', stub: true)
+      expect(stubed_client.track(
+        event: 'event',
+        user_id: 'id'
+      )[:status]).to eq(200)
+    end
   end
 end

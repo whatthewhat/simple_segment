@@ -23,4 +23,17 @@ describe SimpleSegment::Configuration do
       expect(config.on_error).to be_a(Proc)
     end
   end
+
+  it 'works with stub' do
+    config = described_class.new(write_key: 'test', stub: true)
+    expect(config.stub).to eq true
+  end
+
+  it 'works with user prefered logging' do
+    config = described_class.new(
+      write_key: 'test',
+      logger: Logger.new(STDOUT)
+    )
+    expect(config.logger).not_to be_nil
+  end
 end
