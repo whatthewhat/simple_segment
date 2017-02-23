@@ -36,9 +36,8 @@ module SimpleSegment
       end
 
       def check_identity!
-        unless options[:user_id] || options[:anonymous_id]
-          raise ArgumentError, 'user_id or anonymous_id must be present'
-        end
+        raise ArgumentError, 'user_id or anonymous_id must be present' unless options[:user_id] ||
+                                                                              options[:anonymous_id]
       end
 
       def timestamp(timestamp)

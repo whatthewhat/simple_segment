@@ -8,10 +8,10 @@ module SimpleSegment
       def build_payload
         raise ArgumentError, 'event name must be present' unless options[:event]
 
-        base_payload.merge({
+        base_payload.merge(
           event: options[:event],
           properties: options[:properties]
-        })
+        )
       end
     end
   end

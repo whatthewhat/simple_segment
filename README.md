@@ -74,6 +74,19 @@ analytics.batch do |batch|
 end
 ```
 
+### Stub API calls
+
+You can stub your API calls avoiding unecessary calls in development and automated test environments.
+Backwards compatibility with the official gem
+
+```ruby
+analytics = SimpleSegment::Client.new({
+  write_key: 'YOUR_WRITE_KEY', # required
+  stub: true
+  }
+})
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
