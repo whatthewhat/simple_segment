@@ -8,7 +8,8 @@ module SimpleSegment
       symbolized_settings = symbolize_keys(settings)
       @write_key = symbolized_settings[:write_key]
       @on_error = symbolized_settings[:on_error] || proc {}
-      raise ArgumentError, 'Missing required option :write_key' unless @write_key
+      raise ArgumentError, 'Missing required option :write_key' \
+        unless @write_key
     end
   end
 end

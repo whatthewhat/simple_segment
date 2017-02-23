@@ -6,10 +6,10 @@ module SimpleSegment
       end
 
       def build_payload
-        base_payload.merge({
+        base_payload.merge(
           name: options[:name],
           properties: options[:properties]
-        })
+        )
       end
     end
   end
