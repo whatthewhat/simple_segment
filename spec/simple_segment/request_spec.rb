@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SimpleSegment::Request do
   context 'API errors handling' do
     before(:example) do
-      stub_request(:post, 'https://api.segment.io/v1/track').to_return(
+      stub_request(:post, 'https://key:@api.segment.io/v1/track').to_return(
         status: 500, body: { error: 'Does not compute' }.to_json
       )
     end
