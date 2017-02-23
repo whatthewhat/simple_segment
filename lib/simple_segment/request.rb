@@ -22,10 +22,8 @@ module SimpleSegment
       payload = JSON.generate(payload)
       if stub
         logger = Logger.new STDOUT
-        status_code = 200
-        error = nil
         logger.debug "stubbed request to #{path}: write key = #{write_key}, payload = #{payload}"
-        { status: status_code, error: error }
+        { status: 200, error: nil }
       else
         Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
           request = Net::HTTP::Post.new(path, headers)
