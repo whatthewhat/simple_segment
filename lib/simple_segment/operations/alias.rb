@@ -8,9 +8,9 @@ module SimpleSegment
       def build_payload
         raise ArgumentError, 'previous_id must be present' unless options[:previous_id]
 
-        base_payload.merge({
+        base_payload.merge(
           previousId: options[:previous_id]
-        })
+        )
       end
     end
   end

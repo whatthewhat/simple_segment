@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe SimpleSegment::Client do
-  subject(:client) {
-    described_class.new(write_key: 'WRITE_KEY')
-  }
+  subject(:client) { described_class.new(write_key: 'WRITE_KEY') }
   let(:now) { Time.new(2999,12,29) }
 
   describe '#identify' do
@@ -42,8 +40,9 @@ describe SimpleSegment::Client do
         'timestamp' => Time.new(2016,3,23).iso8601,
         'sentAt' => now.iso8601
       }
-      request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/identify').
-        with(body: expected_request_body)
+      request_stub = stub_request(:post, 'https://api.segment.io/v1/identify').with(
+        body: expected_request_body
+      )
 
       Timecop.freeze(now) do
         client.identify(options)
@@ -52,24 +51,18 @@ describe SimpleSegment::Client do
     end
 
     context 'input checks' do
-      before(:example) {
-        stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/identify')
-      }
+      before(:example) { stub_request(:post, 'https://api.segment.io/v1/identify') }
 
       it 'errors with user_id and anonymous_id blank' do
         expect { client.identify }.to raise_error(ArgumentError)
       end
 
       it 'allows blank user_id if anonymous_id is present' do
-        expect {
-          client.identify(anonymous_id: 'id')
-        }.not_to raise_error
+        expect { client.identify(anonymous_id: 'id') }.not_to raise_error
       end
 
       it 'allows timestamp to be a string' do
-        expect {
-          client.identify(anonymous_id: 'id', timestamp: Time.new(2016,3,23).iso8601.to_s)
-        }.not_to raise_error
+        expect { client.identify(anonymous_id: 'id', timestamp: Time.new(2016,3,23).iso8601.to_s) }.not_to raise_error
       end
     end
   end
@@ -112,8 +105,7 @@ describe SimpleSegment::Client do
         'timestamp' => Time.new(2016,3,23).iso8601,
         'sentAt' => now.iso8601
       }
-      request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/track').
-        with(body: expected_request_body)
+      request_stub = stub_request(:post, 'https://api.segment.io/v1/track').with(body: expected_request_body)
 
       Timecop.freeze(now) do
         client.track(options)
@@ -122,9 +114,7 @@ describe SimpleSegment::Client do
     end
 
     context 'input checks' do
-      before(:example) {
-        stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/track')
-      }
+      before(:example) { stub_request(:post, 'https://api.segment.io/v1/track') }
 
       it 'errors without an event name' do
         expect { client.track(user_id: 'id') }.to raise_error(ArgumentError)
@@ -135,9 +125,7 @@ describe SimpleSegment::Client do
       end
 
       it 'allows blank user_id if anonymous_id is present' do
-        expect {
-          client.track(event: 'test', anonymous_id: 'id')
-        }.not_to raise_error
+        expect { client.track(event: 'test', anonymous_id: 'id') }.not_to raise_error
       end
     end
   end
@@ -178,8 +166,7 @@ describe SimpleSegment::Client do
         'timestamp' => Time.new(2016,3,23).iso8601,
         'sentAt' => now.iso8601
       }
-      request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/page').
-        with(body: expected_request_body)
+      request_stub = stub_request(:post, 'https://api.segment.io/v1/page').with(body: expected_request_body)
 
       Timecop.freeze(now) do
         client.page(options)
@@ -188,18 +175,14 @@ describe SimpleSegment::Client do
     end
 
     context 'input checks' do
-      before(:example) {
-        stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/page')
-      }
+      before(:example) { stub_request(:post, 'https://api.segment.io/v1/page') }
 
       it 'errors with user_id and anonymous_id blank' do
         expect { client.page }.to raise_error(ArgumentError)
       end
 
       it 'allows blank user_id if anonymous_id is present' do
-        expect {
-          client.page(anonymous_id: 'id')
-        }.not_to raise_error
+        expect { client.page(anonymous_id: 'id') }.not_to raise_error
       end
     end
   end
@@ -240,8 +223,7 @@ describe SimpleSegment::Client do
         'timestamp' => Time.new(2016,3,23).iso8601,
         'sentAt' => now.iso8601
       }
-      request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/group').
-        with(body: expected_request_body)
+      request_stub = stub_request(:post, 'https://api.segment.io/v1/group').with(body: expected_request_body)
 
       Timecop.freeze(now) do
         client.group(options)
@@ -250,9 +232,7 @@ describe SimpleSegment::Client do
     end
 
     context 'input checks' do
-      before(:example) {
-        stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/group')
-      }
+      before(:example) { stub_request(:post, 'https://api.segment.io/v1/group') }
 
       it 'errors without a group id' do
         expect { client.group(user_id: 'id') }.to raise_error(ArgumentError)
@@ -263,9 +243,7 @@ describe SimpleSegment::Client do
       end
 
       it 'allows blank user_id if anonymous_id is present' do
-        expect {
-          client.group(group_id: 'id', anonymous_id: 'id')
-        }.not_to raise_error
+        expect { client.group(group_id: 'id', anonymous_id: 'id') }.not_to raise_error
       end
     end
   end
@@ -300,8 +278,7 @@ describe SimpleSegment::Client do
         'timestamp' => Time.new(2016,3,23).iso8601,
         'sentAt' => now.iso8601
       }
-      request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/alias').
-        with(body: expected_request_body)
+      request_stub = stub_request(:post, 'https://api.segment.io/v1/alias').with(body: expected_request_body)
 
       Timecop.freeze(now) do
         client.alias(options)
@@ -310,9 +287,7 @@ describe SimpleSegment::Client do
     end
 
     context 'input checks' do
-      before(:example) {
-        stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/alias')
-      }
+      before(:example) { stub_request(:post, 'https://api.segment.io/v1/alias') }
 
       it 'errors without a previous id' do
         expect { client.alias(user_id: 'id') }.to raise_error(ArgumentError)
@@ -323,9 +298,7 @@ describe SimpleSegment::Client do
       end
 
       it 'allows blank user_id if anonymous_id is present' do
-        expect {
-          client.alias(previous_id: 'id', anonymous_id: 'id')
-        }.not_to raise_error
+        expect { client.alias(previous_id: 'id', anonymous_id: 'id') }.not_to raise_error
       end
     end
   end
@@ -338,8 +311,9 @@ describe SimpleSegment::Client do
 
   describe '#batch' do
     it 'batches events into a single request' do
-      request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/import').
-        with { |request| JSON.parse(request.body)['batch'].length == 2 }
+      request_stub = stub_request(:post, 'https://api.segment.io/v1/import').with do |request|
+        JSON.parse(request.body)['batch'].length == 2
+      end
       client.batch do |analytics|
         analytics.identify(user_id: 'id')
         analytics.track(event: 'Delivered Package', user_id: 'id')
