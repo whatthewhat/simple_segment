@@ -343,7 +343,7 @@ describe SimpleSegment::Client do
     it 'batches events into a single request' do
       request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/import')
                      .with do |request|
-                       JSON.parse(request.body)['batch'].length.length == 2
+                       JSON.parse(request.body)['batch'].length == 2
                      end
       client.batch do |analytics|
         analytics.identify(user_id: 'id')
