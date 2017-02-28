@@ -5,7 +5,8 @@ describe SimpleSegment::Operations::Track do
     let(:client) { SimpleSegment::Client.new(write_key: 'key') }
 
     it 'works with Time objects' do
-      payload = described_class.new(client,
+      payload = described_class.new(
+        client,
         event: 'event',
         user_id: 'id',
         timestamp: Time.new(2016, 6, 27, 23, 4, 20, '+03:00')
@@ -15,7 +16,8 @@ describe SimpleSegment::Operations::Track do
     end
 
     it 'works with iso8601 strings' do
-      payload = described_class.new(client,
+      payload = described_class.new(
+        client,
         event: 'event',
         user_id: 'id',
         timestamp: '2016-06-27T20:04:20Z'
@@ -25,13 +27,14 @@ describe SimpleSegment::Operations::Track do
     end
 
     it 'errors with invalid strings' do
-      expect{
-        described_class.new(client,
+      expect do
+        described_class.new(
+          client,
           event: 'event',
           user_id: 'id',
           timestamp: '2016 06 27T23:04:20'
         ).build_payload
-      }.to raise_error(ArgumentError)
+      end.to raise_error(ArgumentError)
     end
   end
 end

@@ -42,7 +42,7 @@ module SimpleSegment
     end
 
     def commit
-      if payload[:batch].length == 0
+      if payload[:batch].length.zero?
         raise ArgumentError, 'A batch must contain at least one action'
       end
 

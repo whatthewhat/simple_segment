@@ -6,9 +6,9 @@ module SimpleSegment
       end
 
       def build_payload
-        base_payload.merge({
+        base_payload.merge(
           traits: options[:traits]
-        })
+        )
       end
     end
   end
