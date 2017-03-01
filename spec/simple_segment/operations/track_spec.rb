@@ -41,7 +41,8 @@ describe SimpleSegment::Operations::Track do
       stubed_client = SimpleSegment::Client.new(write_key: 'key', stub: true)
       expect(stubed_client.track(
         event: 'event',
-        user_id: 'id'
+        user_id: 'id',
+        timestamp: Time.new(2016, 6, 27, 23, 4, 20, '+03:00')
       )[:status]).to eq(200)
     end
   end
