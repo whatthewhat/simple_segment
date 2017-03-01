@@ -19,6 +19,7 @@ module SimpleSegment
       response = nil
       status_code = nil
       response_body = nil
+
       uri = URI(BASE_URL)
       payload = JSON.generate(payload)
       if stub
