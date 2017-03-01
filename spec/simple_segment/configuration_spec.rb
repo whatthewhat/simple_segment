@@ -30,10 +30,11 @@ describe SimpleSegment::Configuration do
   end
 
   it 'works with user prefered logging' do
+    my_logger = object_double('Logger')
     config = described_class.new(
       write_key: 'test',
-      logger: Logger.new(STDOUT)
+      logger: my_logger
     )
-    expect(config.logger).not_to be_nil
+    expect(config.logger).to eq(my_logger)
   end
 end
