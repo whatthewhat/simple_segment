@@ -10,3 +10,4 @@
 *.gem
 .rubocop_todo.yml
 .rubocop.yml
+.rbenv-gemsets
