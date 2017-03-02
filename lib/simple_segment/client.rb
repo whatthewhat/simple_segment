@@ -88,7 +88,6 @@ module SimpleSegment
     end
 
     # A no op, added for backwards compatibility with `analytics-ruby`
-    def flush
-    end
+    def flush; end
   end
 end

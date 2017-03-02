@@ -4,7 +4,7 @@ describe SimpleSegment::Client do
   subject(:client) do
     described_class.new(write_key: 'WRITE_KEY')
   end
-  let(:now) { Time.new(2999,12,29) }
+  let(:now) { Time.new(2999, 12, 29) }
 
   describe '#identify' do
     it 'sends identity and properties to segment' do
@@ -20,7 +20,7 @@ describe SimpleSegment::Client do
         integrations: {
           all: true
         },
-        timestamp: Time.new(2016,3,23)
+        timestamp: Time.new(2016, 3, 23)
       }
       expected_request_body = {
         'userId' => 'id',
@@ -39,7 +39,7 @@ describe SimpleSegment::Client do
         'integrations' => {
           'all' => true
         },
-        'timestamp' => Time.new(2016,3,23).iso8601,
+        'timestamp' => Time.new(2016, 3, 23).iso8601,
         'sentAt' => now.iso8601
       }
       request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/identify')
@@ -70,7 +70,7 @@ describe SimpleSegment::Client do
         expect do
           client.identify(
             anonymous_id: 'id',
-            timestamp: Time.new(2016,3,23).iso8601.to_s
+            timestamp: Time.new(2016, 3, 23).iso8601.to_s
           )
         end.not_to raise_error
       end
@@ -92,7 +92,7 @@ describe SimpleSegment::Client do
         integrations: {
           all: true
         },
-        timestamp: Time.new(2016,3,23)
+        timestamp: Time.new(2016, 3, 23)
       }
       expected_request_body = {
         'event' => 'Delivered Package',
@@ -112,7 +112,7 @@ describe SimpleSegment::Client do
         'integrations' => {
           'all' => true
         },
-        'timestamp' => Time.new(2016,3,23).iso8601,
+        'timestamp' => Time.new(2016, 3, 23).iso8601,
         'sentAt' => now.iso8601
       }
       request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/track')
@@ -159,7 +159,7 @@ describe SimpleSegment::Client do
         integrations: {
           all: true
         },
-        timestamp: Time.new(2016,3,23)
+        timestamp: Time.new(2016, 3, 23)
       }
       expected_request_body = {
         'userId' => 'id',
@@ -178,7 +178,7 @@ describe SimpleSegment::Client do
         'integrations' => {
           'all' => true
         },
-        'timestamp' => Time.new(2016,3,23).iso8601,
+        'timestamp' => Time.new(2016, 3, 23).iso8601,
         'sentAt' => now.iso8601
       }
       request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/page')
@@ -221,7 +221,7 @@ describe SimpleSegment::Client do
         integrations: {
           all: true
         },
-        timestamp: Time.new(2016,3,23)
+        timestamp: Time.new(2016, 3, 23)
       }
       expected_request_body = {
         'userId' => 'id',
@@ -240,7 +240,7 @@ describe SimpleSegment::Client do
         'integrations' => {
           'all' => true
         },
-        'timestamp' => Time.new(2016,3,23).iso8601,
+        'timestamp' => Time.new(2016, 3, 23).iso8601,
         'sentAt' => now.iso8601
       }
       request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/group')
@@ -284,7 +284,7 @@ describe SimpleSegment::Client do
         integrations: {
           all: true
         },
-        timestamp: Time.new(2016,3,23)
+        timestamp: Time.new(2016, 3, 23)
       }
       expected_request_body = {
         'userId' => 'id',
@@ -300,7 +300,7 @@ describe SimpleSegment::Client do
         'integrations' => {
           'all' => true
         },
-        'timestamp' => Time.new(2016,3,23).iso8601,
+        'timestamp' => Time.new(2016, 3, 23).iso8601,
         'sentAt' => now.iso8601
       }
       request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/alias')
