@@ -1,0 +1,10 @@
+Metrics/BlockLength:
+  Exclude:
+    - '**/*_spec.rb'
+
+Metrics/LineLength:
+  Exclude:
+    - 'simple_segment.gemspec'
+
+Style/Documentation:
+  Enabled: false

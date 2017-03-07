@@ -16,7 +16,10 @@ describe SimpleSegment::Request do
     end
 
     it 'passes http errors to the on_error hook' do
-      error_code, error_body, response, exception = nil, nil, nil, nil
+      error_code = nil
+      error_body = nil
+      response = nil
+      exception = nil
       error_handler = proc do |code, body, res, e|
         error_code = code
         error_body = body
