@@ -76,22 +76,21 @@ end
 
 ### Stub API calls
 
-You can stub your API calls avoiding unecessary calls in development and automated test environments.
-Backwards compatibility with the official gem
+You can stub your API calls avoiding unecessary requests in development and automated test environments (backwards compatible with the official gem):
 
 ```ruby
 analytics = SimpleSegment::Client.new(
-  write_key: 'YOUR_WRITE_KEY', # required
+  write_key: 'YOUR_WRITE_KEY',
   stub: true
 )
 ```
 
 ### Configurable Logger
-If you don't set a logger Ruby Logger class will be used as default.
+When used in stubbed mode all calls are logged to STDOUT, this can be changed by providing a custom logger object:
 
 ```ruby
 analytics = SimpleSegment::Client.new(
-  write_key: 'YOUR_WRITE_KEY', # required
+  write_key: 'YOUR_WRITE_KEY',
   logger: Rails.logger
 )
 ```
