@@ -44,7 +44,7 @@ Create a client instance:
 ```ruby
 analytics = SimpleSegment::Client.new({
   write_key: 'YOUR_WRITE_KEY', # required
-  on_error: proc { |error_code, error_body, response, exception|
+  on_error: proc { |error_code, error_body, exception, response|
     # defaults to an empty proc
   }
 })
