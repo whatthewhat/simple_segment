@@ -1,13 +1,15 @@
 module SimpleSegment
   module Operations
     class Identify < Operation
+      include SimpleSegment::Utils
+
       def call
         request.post('/v1/identify', build_payload)
       end
 
       def build_payload
         base_payload.merge(
-          traits: options[:traits]
+          traits: options[:traits] && isoify_dates!(options[:traits])
         )
       end
     end
