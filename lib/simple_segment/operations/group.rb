@@ -1,6 +1,8 @@
 module SimpleSegment
   module Operations
     class Group < Operation
+      include SimpleSegment::Utils
+
       def call
         request.post('/v1/group', build_payload)
       end
@@ -10,7 +12,7 @@ module SimpleSegment
           unless options[:group_id]
 
         base_payload.merge(
-          traits: options[:traits],
+          traits: options[:traits] && isoify_dates!(options[:traits]),
           groupId: options[:group_id]
         )
       end
