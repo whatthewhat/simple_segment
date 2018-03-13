@@ -6,9 +6,11 @@ module SimpleSegment
       end
 
       def build_payload
+        properties = options[:properties] && isoify_dates!(options[:properties])
+
         base_payload.merge(
           name: options[:name],
-          properties: options[:properties]
+          properties: properties
         )
       end
     end
