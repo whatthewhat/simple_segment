@@ -1,6 +1,8 @@
 module SimpleSegment
   module Operations
     class Operation
+      include SimpleSegment::Utils
+
       DEFAULT_CONTEXT = {
         library: {
           name: 'simple_segment',

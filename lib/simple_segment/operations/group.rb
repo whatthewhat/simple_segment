@@ -10,7 +10,7 @@ module SimpleSegment
           unless options[:group_id]
 
         base_payload.merge(
-          traits: options[:traits],
+          traits: options[:traits] && isoify_dates!(options[:traits]),
           groupId: options[:group_id]
         )
       end

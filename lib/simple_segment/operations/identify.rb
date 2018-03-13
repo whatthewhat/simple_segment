@@ -7,7 +7,7 @@ module SimpleSegment
 
       def build_payload
         base_payload.merge(
-          traits: options[:traits]
+          traits: options[:traits] && isoify_dates!(options[:traits])
         )
       end
     end

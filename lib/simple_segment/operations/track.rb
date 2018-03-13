@@ -9,9 +9,11 @@ module SimpleSegment
         raise ArgumentError, 'event name must be present' \
           unless options[:event]
 
+        properties = options[:properties] && isoify_dates!(options[:properties])
+
         base_payload.merge(
           event: options[:event],
-          properties: options[:properties]
+          properties: properties
         )
       end
     end
