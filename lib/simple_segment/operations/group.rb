@@ -1,8 +1,6 @@
 module SimpleSegment
   module Operations
     class Group < Operation
-      include SimpleSegment::Utils
-
       def call
         request.post('/v1/group', build_payload)
       end

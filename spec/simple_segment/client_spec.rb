@@ -89,12 +89,19 @@ describe SimpleSegment::Client do
 
   describe '#track' do
     it 'sends event and properties to segment' do
+      time = Time.utc(2018, 3, 11, 10, 20)
+      dt = DateTime.new(2018, 3, 11, 12, 20) # rubocop:disable Style/DateTime
+      date = Date.new(2018, 3, 12)
+
       options = {
         event: 'Delivered Package',
         user_id: 'id',
         properties: {
           contents: 'Lug nuts',
-          delivery_to: 'Robots of Chapek 9'
+          delivery_to: 'Robots of Chapek 9',
+          foo_time: time,
+          foo_date_time: dt,
+          foo_date: date
         },
         context: {
           crew: %w(Bender Fry Leela)
@@ -110,7 +117,10 @@ describe SimpleSegment::Client do
         'anonymousId' => nil,
         'properties' => {
           'contents' => 'Lug nuts',
-          'delivery_to' => 'Robots of Chapek 9'
+          'delivery_to' => 'Robots of Chapek 9',
+          'foo_time' => '2018-03-11T10:20:00.000Z',
+          'foo_date_time' => dt.to_time.iso8601(3),
+          'foo_date' => '2018-03-12'
         },
         'context' => {
           'crew' => %w(Bender Fry Leela),

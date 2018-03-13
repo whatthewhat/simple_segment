@@ -1,8 +1,6 @@
 module SimpleSegment
   module Operations
     class Identify < Operation
-      include SimpleSegment::Utils
-
       def call
         request.post('/v1/identify', build_payload)
       end

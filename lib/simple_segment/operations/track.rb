@@ -11,7 +11,7 @@ module SimpleSegment
 
         base_payload.merge(
           event: options[:event],
-          properties: options[:properties]
+          properties: options[:properties] && isoify_dates!(options[:properties])
         )
       end
     end
