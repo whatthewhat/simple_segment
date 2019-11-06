@@ -37,4 +37,14 @@ describe SimpleSegment::Configuration do
     )
     expect(config.logger).to eq(my_logger)
   end
+
+  it 'accepts an open_timeout' do
+    config = described_class.new(write_key: test, open_timeout: 42)
+    expect(config.open_timeout).to eq(42)
+  end
+
+  it 'accepts a read_timeout' do
+    config = described_class.new(write_key: test, read_timeout: 42)
+    expect(config.read_timeout).to eq(42)
+  end
 end
