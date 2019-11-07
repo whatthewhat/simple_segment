@@ -6,15 +6,14 @@ module SimpleSegment
       'accept' => 'application/json'
     }.freeze
 
-    attr_reader :write_key, :error_handler, :stub, :logger, :open_timeout, :read_timeout
+    attr_reader :write_key, :error_handler, :stub, :logger, :http_options
 
     def initialize(client)
       @write_key = client.config.write_key
       @error_handler = client.config.on_error
       @stub = client.config.stub
       @logger = client.config.logger
-      @open_timeout = client.config.open_timeout
-      @read_timeout = client.config.read_timeout
+      @http_options = client.config.http_options
     end
 
     def post(path, payload, headers: DEFAULT_HEADERS)
@@ -31,10 +30,7 @@ module SimpleSegment
 
         { status: 200, error: nil }
       else
-        options = {}
-        options[:use_ssl] = true
-        options[:open_timeout] = open_timeout if open_timeout
-        options[:read_timeout] = read_timeout if read_timeout
+        options = { use_ssl: true }.merge(http_options)
         Net::HTTP.start(uri.host, uri.port, options) do |http|
           request = Net::HTTP::Post.new(path, headers)
           request.basic_auth write_key, nil

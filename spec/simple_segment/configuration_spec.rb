@@ -22,6 +22,11 @@ describe SimpleSegment::Configuration do
       config = described_class.new(write_key: 'test')
       expect(config.on_error).to be_a(Proc)
     end
+
+    it 'has a default http_options' do
+      config = described_class.new(write_key: 'test')
+      expect(config.http_options).to eq({})
+    end
   end
 
   it 'works with stub' do
@@ -38,13 +43,8 @@ describe SimpleSegment::Configuration do
     expect(config.logger).to eq(my_logger)
   end
 
-  it 'accepts an open_timeout' do
-    config = described_class.new(write_key: 'test', open_timeout: 42)
-    expect(config.open_timeout).to eq(42)
-  end
-
-  it 'accepts a read_timeout' do
-    config = described_class.new(write_key: 'test', read_timeout: 42)
-    expect(config.read_timeout).to eq(42)
+  it 'accepts an http_options' do
+    config = described_class.new(write_key: 'test', http_options: { read_timeout: 42 })
+    expect(config.http_options).to eq(read_timeout: 42)
   end
 end
