@@ -95,6 +95,22 @@ analytics = SimpleSegment::Client.new(
 )
 ```
 
+### Set HTTP Options
+
+You can set options that are passed to `Net::HTTP.start`.
+
+```ruby
+analytics = SimpleSegment::Client.new(
+  write_key: 'YOUR_WRITE_KEY',
+  http_options: {
+    open_timeout: 42,
+    read_timeout: 42,
+    close_on_empty_response: true,
+    # ...
+  }
+)
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
