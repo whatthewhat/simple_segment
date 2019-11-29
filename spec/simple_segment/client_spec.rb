@@ -9,7 +9,7 @@ describe SimpleSegment::Client do
   describe '#identify' do
     it 'sends identity and properties to segment' do
       time = Time.utc(2018, 3, 11, 10, 20)
-      dt = DateTime.new(2018, 3, 11, 12, 20) # rubocop:disable Style/DateTime
+      dt = DateTime.new(2018, 3, 11, 12, 20)
       date = Date.new(2018, 3, 12)
 
       options = {
@@ -52,8 +52,8 @@ describe SimpleSegment::Client do
         'timestamp' => Time.new(2016, 3, 23).iso8601,
         'sentAt' => now.iso8601
       }
-      request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/identify')
-                     .with(body: expected_request_body)
+      request_stub = stub_request(:post, 'https://api.segment.io/v1/identify')
+                     .with(body: expected_request_body, basic_auth: ['WRITE_KEY', ''])
 
       Timecop.freeze(now) do
         client.identify(options)
@@ -63,7 +63,7 @@ describe SimpleSegment::Client do
 
     context 'input checks' do
       before(:example) do
-        stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/identify')
+        stub_request(:post, 'https://api.segment.io/v1/identify').with(basic_auth: ['WRITE_KEY', ''])
       end
 
       it 'errors with user_id and anonymous_id blank' do
@@ -90,7 +90,7 @@ describe SimpleSegment::Client do
   describe '#track' do
     it 'sends event and properties to segment' do
       time = Time.utc(2018, 3, 11, 10, 20)
-      dt = DateTime.new(2018, 3, 11, 12, 20) # rubocop:disable Style/DateTime
+      dt = DateTime.new(2018, 3, 11, 12, 20)
       date = Date.new(2018, 3, 12)
 
       options = {
@@ -135,8 +135,8 @@ describe SimpleSegment::Client do
         'timestamp' => Time.new(2016, 3, 23).iso8601,
         'sentAt' => now.iso8601
       }
-      request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/track')
-                     .with(body: expected_request_body)
+      request_stub = stub_request(:post, 'https://api.segment.io/v1/track')
+                     .with(body: expected_request_body, basic_auth: ['WRITE_KEY', ''])
 
       Timecop.freeze(now) do
         client.track(options)
@@ -146,7 +146,7 @@ describe SimpleSegment::Client do
 
     context 'input checks' do
       before(:example) do
-        stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/track')
+        stub_request(:post, 'https://api.segment.io/v1/track').with(basic_auth: ['WRITE_KEY', ''])
       end
 
       it 'errors without an event name' do
@@ -168,7 +168,7 @@ describe SimpleSegment::Client do
   describe '#page' do
     it 'sends page info to segment' do
       time = Time.utc(2018, 3, 11, 10, 20)
-      dt = DateTime.new(2018, 3, 11, 12, 20) # rubocop:disable Style/DateTime
+      dt = DateTime.new(2018, 3, 11, 12, 20)
       date = Date.new(2018, 3, 12)
 
       options = {
@@ -211,8 +211,8 @@ describe SimpleSegment::Client do
         'timestamp' => Time.new(2016, 3, 23).iso8601,
         'sentAt' => now.iso8601
       }
-      request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/page')
-                     .with(body: expected_request_body)
+      request_stub = stub_request(:post, 'https://api.segment.io/v1/page')
+                     .with(body: expected_request_body, basic_auth: ['WRITE_KEY', ''])
 
       Timecop.freeze(now) do
         client.page(options)
@@ -222,7 +222,7 @@ describe SimpleSegment::Client do
 
     context 'input checks' do
       before(:example) do
-        stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/page')
+        stub_request(:post, 'https://api.segment.io/v1/page').with(basic_auth: ['WRITE_KEY', ''])
       end
 
       it 'errors with user_id and anonymous_id blank' do
@@ -240,7 +240,7 @@ describe SimpleSegment::Client do
   describe '#group' do
     it 'sends group info to segment' do
       time = Time.utc(2018, 3, 11, 10, 20)
-      dt = DateTime.new(2018, 3, 11, 12, 20) # rubocop:disable Style/DateTime
+      dt = DateTime.new(2018, 3, 11, 12, 20)
       date = Date.new(2018, 3, 12)
 
       options = {
@@ -283,8 +283,8 @@ describe SimpleSegment::Client do
         'timestamp' => Time.new(2016, 3, 23).iso8601,
         'sentAt' => now.iso8601
       }
-      request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/group')
-                     .with(body: expected_request_body)
+      request_stub = stub_request(:post, 'https://api.segment.io/v1/group')
+                     .with(body: expected_request_body, basic_auth: ['WRITE_KEY', ''])
 
       Timecop.freeze(now) do
         client.group(options)
@@ -294,7 +294,7 @@ describe SimpleSegment::Client do
 
     context 'input checks' do
       before(:example) do
-        stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/group')
+        stub_request(:post, 'https://api.segment.io/v1/group').with(basic_auth: ['WRITE_KEY', ''])
       end
 
       it 'errors without a group id' do
@@ -343,8 +343,8 @@ describe SimpleSegment::Client do
         'timestamp' => Time.new(2016, 3, 23).iso8601,
         'sentAt' => now.iso8601
       }
-      request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/alias')
-                     .with(body: expected_request_body)
+      request_stub = stub_request(:post, 'https://api.segment.io/v1/alias')
+                     .with(body: expected_request_body, basic_auth: ['WRITE_KEY', ''])
 
       Timecop.freeze(now) do
         client.alias(options)
@@ -354,7 +354,7 @@ describe SimpleSegment::Client do
 
     context 'input checks' do
       before(:example) do
-        stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/alias')
+        stub_request(:post, 'https://api.segment.io/v1/alias').with(basic_auth: ['WRITE_KEY', ''])
       end
 
       it 'errors without a previous id' do
@@ -381,7 +381,7 @@ describe SimpleSegment::Client do
 
   describe '#batch' do
     it 'batches events into a single request' do
-      request_stub = stub_request(:post, 'https://WRITE_KEY:@api.segment.io/v1/import')
+      request_stub = stub_request(:post, 'https://api.segment.io/v1/import')
                      .with do |request|
                        JSON.parse(request.body)['batch'].length == 2
                      end
