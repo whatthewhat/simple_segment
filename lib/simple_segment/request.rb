@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module SimpleSegment
   class Request
-    BASE_URL = 'https://api.segment.io'.freeze
+    BASE_URL = 'https://api.segment.io'
     DEFAULT_HEADERS = {
       'Content-Type' => 'application/json',
       'accept' => 'application/json'
@@ -16,7 +18,7 @@ module SimpleSegment
       @http_options = client.config.http_options
     end
 
-    def post(path, payload, headers: DEFAULT_HEADERS)
+    def post(path, payload, headers: DEFAULT_HEADERS) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       response = nil
       status_code = nil
       response_body = nil

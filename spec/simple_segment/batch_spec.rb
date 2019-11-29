@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe SimpleSegment::Batch do
@@ -9,7 +11,7 @@ describe SimpleSegment::Batch do
                      batch = JSON.parse(request.body)['batch']
                      batch.map do |operation|
                        operation['action']
-                     end == %w(identify group track page)
+                     end == %w[identify group track page]
                    end
 
     batch = described_class.new(client)
@@ -75,7 +77,7 @@ describe SimpleSegment::Batch do
                      batch = JSON.parse(request.body)['batch']
                      batch.map do |operation|
                        operation['action']
-                     end == %w(identify track)
+                     end == %w[identify track]
                    end
 
     batch = described_class.new(client)

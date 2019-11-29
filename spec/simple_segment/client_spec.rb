@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe SimpleSegment::Client do
@@ -63,7 +65,8 @@ describe SimpleSegment::Client do
 
     context 'input checks' do
       before(:example) do
-        stub_request(:post, 'https://api.segment.io/v1/identify').with(basic_auth: ['WRITE_KEY', ''])
+        stub_request(:post, 'https://api.segment.io/v1/identify')
+          .with(basic_auth: ['WRITE_KEY', ''])
       end
 
       it 'errors with user_id and anonymous_id blank' do
@@ -104,7 +107,7 @@ describe SimpleSegment::Client do
           foo_date: date
         },
         context: {
-          crew: %w(Bender Fry Leela)
+          crew: %w[Bender Fry Leela]
         },
         integrations: {
           all: true
@@ -123,7 +126,7 @@ describe SimpleSegment::Client do
           'foo_date' => '2018-03-12'
         },
         'context' => {
-          'crew' => %w(Bender Fry Leela),
+          'crew' => %w[Bender Fry Leela],
           'library' => {
             'name' => 'simple_segment',
             'version' => SimpleSegment::VERSION

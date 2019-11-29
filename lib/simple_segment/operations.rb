@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'simple_segment/request'
 require 'simple_segment/operations/operation'
 require 'simple_segment/operations/identify'

@@ -3,6 +3,8 @@ Metrics/BlockLength:
     - '**/*_spec.rb'
 
 Metrics/LineLength:
+  Max: 100
+  IgnoreCopDirectives: true
   Exclude:
     - 'simple_segment.gemspec'
 

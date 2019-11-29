@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SimpleSegment
   module Utils
     def self.included(klass)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SimpleSegment
   class Batch
     include SimpleSegment::Utils
