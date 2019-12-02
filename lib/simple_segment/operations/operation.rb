@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SimpleSegment
   module Operations
     class Operation
@@ -10,10 +12,9 @@ module SimpleSegment
         }
       }.freeze
 
-      attr_reader :options, :request
-
       def initialize(client, options = {})
         @options = options
+        @context = DEFAULT_CONTEXT.merge(options[:context].to_h)
         @request = Request.new(client)
       end
 
@@ -23,6 +24,8 @@ module SimpleSegment
 
       private
 
+      attr_reader :options, :request, :context
+
       def base_payload
         check_identity!
         current_time = Time.now
@@ -30,7 +33,7 @@ module SimpleSegment
         {
           userId: options[:user_id],
           anonymousId: options[:anonymous_id],
-          context: DEFAULT_CONTEXT.merge(options[:context].to_h),
+          context: context,
           integrations: options[:integrations],
           timestamp: timestamp(options.fetch(:timestamp, current_time)),
           sentAt: current_time.iso8601

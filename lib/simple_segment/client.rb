@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'simple_segment/utils'
 require 'simple_segment/configuration'
 require 'simple_segment/operations'

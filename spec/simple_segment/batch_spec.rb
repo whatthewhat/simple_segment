@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe SimpleSegment::Batch do
   let(:client) { SimpleSegment::Client.new(write_key: 'key') }
 
   it 'supports identify, group, track and page' do
-    request_stub = stub_request(:post, 'https://key:@api.segment.io/v1/import')
+    request_stub = stub_request(:post, 'https://api.segment.io/v1/import')
                    .with do |request|
                      batch = JSON.parse(request.body)['batch']
                      batch.map do |operation|
                        operation['action']
-                     end == %w(identify group track page)
+                     end == %w[identify group track page]
                    end
 
     batch = described_class.new(client)
@@ -27,7 +29,7 @@ describe SimpleSegment::Batch do
 
   it 'allows to set common context' do
     expected_context = { 'foo' => 'bar' }
-    request_stub = stub_request(:post, 'https://key:@api.segment.io/v1/import')
+    request_stub = stub_request(:post, 'https://api.segment.io/v1/import')
                    .with do |request|
                      context = JSON.parse(request.body)['context']
                      context == expected_context
@@ -43,7 +45,7 @@ describe SimpleSegment::Batch do
 
   it 'allows to set common integrations' do
     expected_integrations = { 'foo' => 'bar' }
-    request_stub = stub_request(:post, 'https://key:@api.segment.io/v1/import')
+    request_stub = stub_request(:post, 'https://api.segment.io/v1/import')
                    .with do |request|
                      integrations = JSON.parse(request.body)['integrations']
                      integrations == expected_integrations
@@ -70,12 +72,12 @@ describe SimpleSegment::Batch do
   end
 
   it 'can be serialized and deserialized' do
-    request_stub = stub_request(:post, 'https://key:@api.segment.io/v1/import')
+    request_stub = stub_request(:post, 'https://api.segment.io/v1/import')
                    .with do |request|
                      batch = JSON.parse(request.body)['batch']
                      batch.map do |operation|
                        operation['action']
-                     end == %w(identify track)
+                     end == %w[identify track]
                    end
 
     batch = described_class.new(client)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'logger'
 module SimpleSegment
   module Logging
@@ -6,11 +8,7 @@ module SimpleSegment
     end
 
     def default_logger(logger_option)
-      if logger_option
-        logger_option
-      else
-        Logger.new STDOUT
-      end
+      logger_option || Logger.new(STDOUT)
     end
   end
 end
