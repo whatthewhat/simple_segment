@@ -6,13 +6,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.0] - 2019-12-12
+
+### Added
+- Allow passing custom Net::HTTP options (e.g. timeout) https://github.com/whatthewhat/simple_segment/pull/23 by @barodeur
+
+### Changed
+- The gem is no longer tested with Ruby versions below 2.4
 
 ## [0.3.0] - 2018-03-15
 
 ### Changed
 - Date properties are now automatically converted to ISO 8601 to be consistent with the official client https://github.com/whatthewhat/simple_segment/pull/19 by @juanramoncg
 
-[Unreleased]: https://github.com/whatthewhat/simple_segment/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/whatthewhat/simple_segment/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/whatthewhat/simple_segment/compare/v0.3.0...v1.0.0
 [0.3.0]: https://github.com/whatthewhat/simple_segment/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/whatthewhat/simple_segment/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/whatthewhat/simple_segment/compare/v0.1.1...v0.2.0

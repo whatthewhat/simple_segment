@@ -29,34 +29,32 @@ Add this line to your application's Gemfile:
 gem 'simple_segment'
 ```
 
-And then execute:
-
-    $ bundle
-
 Or install it yourself as:
 
-    $ gem install simple_segment
+```sh
+$ gem install simple_segment
+```
 
 ## Usage
 
 Create a client instance:
 
 ```ruby
-analytics = SimpleSegment::Client.new({
+analytics = SimpleSegment::Client.new(
   write_key: 'YOUR_WRITE_KEY', # required
   on_error: proc { |error_code, error_body, exception, response|
     # defaults to an empty proc
   }
-})
+)
 ```
 
 Use it as you would use `analytics-ruby`:
 
 ```ruby
-analytics.track({
+analytics.track(
   user_id: user.id,
   event: 'Created Account'
-})
+)
 ```
 
 ### Batching
@@ -86,6 +84,7 @@ analytics = SimpleSegment::Client.new(
 ```
 
 ### Configurable Logger
+
 When used in stubbed mode all calls are logged to STDOUT, this can be changed by providing a custom logger object:
 
 ```ruby
@@ -97,7 +96,7 @@ analytics = SimpleSegment::Client.new(
 
 ### Set HTTP Options
 
-You can set options that are passed to `Net::HTTP.start`.
+You can set [options](https://docs.ruby-lang.org/en/2.0.0/Net/HTTP.html#method-c-start) that are passed to `Net::HTTP.start`.
 
 ```ruby
 analytics = SimpleSegment::Client.new(
