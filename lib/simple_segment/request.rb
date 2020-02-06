@@ -32,7 +32,7 @@ module SimpleSegment
 
         { status: 200, error: nil }
       else
-        Net::HTTP.start(uri.host, uri.port, http_options) do |http|
+        Net::HTTP.start(uri.host, uri.port, :ENV, http_options) do |http|
           request = Net::HTTP::Post.new(path, headers)
           request.basic_auth write_key, nil
           http.request(request, payload).tap do |res|
