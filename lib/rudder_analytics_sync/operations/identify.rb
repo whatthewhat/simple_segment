@@ -8,9 +8,11 @@ module RudderAnalyticsSync
       end
 
       def build_payload
-        base_payload.merge(
+        merged_payload = base_payload.merge(
           traits: options[:traits] && isoify_dates!(options[:traits])
         )
+        merged_payload[:context][:traits] = merged_payload[:context][:traits].merge(options[:traits])
+        merged_payload
       end
     end
   end

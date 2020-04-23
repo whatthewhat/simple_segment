@@ -15,7 +15,7 @@ module RudderAnalyticsSync
 
         base_payload.merge(
           event: options[:event],
-          properties: properties
+          properties: properties || {}
         )
       end
     end

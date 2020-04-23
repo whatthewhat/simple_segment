@@ -12,7 +12,7 @@ module RudderAnalyticsSync
 
         base_payload.merge(
           name: options[:name],
-          properties: properties
+          properties: properties || {}
         )
       end
     end

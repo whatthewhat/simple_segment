@@ -56,7 +56,7 @@ module RudderAnalyticsSync
     def add(operation_class, options, action)
       operation = operation_class.new(client, symbolize_keys(options))
       operation_payload = operation.build_payload
-      operation_payload[:action] = action
+      operation_payload[:type] = action
       payload[:batch] << operation_payload
     end
   end

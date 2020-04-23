@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'rudder_analytics_sync./utils'
+
 module RudderAnalyticsSync
   module Operations
     class Operation
@@ -9,6 +11,9 @@ module RudderAnalyticsSync
         library: {
           name: 'rudder-sdk-ruby-sync',
           version: RudderAnalyticsSync::VERSION
+        },
+        traits: {
+
         }
       }.freeze
 
@@ -28,29 +33,29 @@ module RudderAnalyticsSync
 
       def base_payload
         check_identity!
-        current_time = Time.now
+        current_time = Time.now.utc
+
+        anonymous_id = options[:anonymous_id] || uid()
+        context[:traits] = (context[:traits] || {}) && {
+          anonymousId: anonymous_id,
+          userId: options[:user_id] 
+        }
 
         {
           userId: options[:user_id],
-          anonymousId: options[:anonymous_id],
+          anonymousId: anonymous_id,
           context: context,
-          integrations: options[:integrations],
-          timestamp: timestamp(options.fetch(:timestamp, current_time)),
-          sentAt: current_time.iso8601
+          integrations: options[:integrations] || {All: true},
+          timestamp: maybe_datetime_in_iso8601(options[:timestamp] || Time.now.utc),
+          sentAt: maybe_datetime_in_iso8601(current_time),
+          messageId: uid(),
+          properties: options[:properties] || {}
         }
       end
 
       def check_identity!
         raise ArgumentError, 'user_id or anonymous_id must be present' \
           unless options[:user_id] || options[:anonymous_id]
-      end
-
-      def timestamp(timestamp)
-        if timestamp.respond_to?(:iso8601)
-          timestamp.iso8601
-        else
-          Time.iso8601(timestamp).iso8601
-        end
       end
     end
   end
