@@ -2,9 +2,9 @@
 
 require 'spec_helper'
 
-describe SimpleSegment::Operations::Track do
+describe RudderAnalyticsSync::Operations::Track do
   context 'timestamps' do
-    let(:client) { SimpleSegment::Client.new(write_key: 'key') }
+    let(:client) { RudderAnalyticsSync::Client.new(write_key: 'key') }
 
     it 'works with Time objects' do
       payload = described_class.new(
@@ -40,7 +40,7 @@ describe SimpleSegment::Operations::Track do
     end
 
     it 'works with stubed calls' do
-      stubed_client = SimpleSegment::Client.new(write_key: 'key', stub: true)
+      stubed_client = RudderAnalyticsSync::Client.new(write_key: 'key', stub: true)
       expect(stubed_client.track(
         event: 'event',
         user_id: 'id',

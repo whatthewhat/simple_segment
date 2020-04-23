@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SimpleSegment
+module RudderAnalyticsSync
   module Utils
     def self.included(klass)
       klass.extend(self)

@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-module SimpleSegment
+module RudderAnalyticsSync
   module Operations
     class Operation
-      include SimpleSegment::Utils
+      include RudderAnalyticsSync::Utils
 
       DEFAULT_CONTEXT = {
         library: {
-          name: 'simple_segment',
-          version: SimpleSegment::VERSION
+          name: 'rudder-sdk-ruby-sync',
+          version: RudderAnalyticsSync::VERSION
         }
       }.freeze
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SimpleSegment
+module RudderAnalyticsSync
   module Operations
     class Alias < Operation
       def call

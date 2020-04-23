@@ -1,10 +1,10 @@
-# SimpleSegment
+# RudderAnalyticsSync
 
 [![Build Status](https://travis-ci.org/whatthewhat/simple_segment.svg?branch=master)](https://travis-ci.org/whatthewhat/simple_segment)
 
 A simple synchronous Ruby API client for [segment.io](segment.io).
 
-SimpleSegment allows for manual control of when and how the events are sent to Segment. This can be useful if you want to leverage an existing queueing system like Sidekiq or Resque for sending events or need to send events synchronously. If this is not the case you will be better off using the [official segment gem](https://github.com/segmentio/analytics-ruby) that handles queuing for you.
+RudderAnalyticsSync allows for manual control of when and how the events are sent to Segment. This can be useful if you want to leverage an existing queueing system like Sidekiq or Resque for sending events or need to send events synchronously. If this is not the case you will be better off using the [official segment gem](https://github.com/segmentio/analytics-ruby) that handles queuing for you.
 
 ## Status
 
@@ -40,7 +40,7 @@ $ gem install simple_segment
 Create a client instance:
 
 ```ruby
-analytics = SimpleSegment::Client.new(
+analytics = RudderAnalyticsSync::Client.new(
   write_key: 'YOUR_WRITE_KEY', # required
   on_error: proc { |error_code, error_body, exception, response|
     # defaults to an empty proc
@@ -77,7 +77,7 @@ end
 You can stub your API calls avoiding unecessary requests in development and automated test environments (backwards compatible with the official gem):
 
 ```ruby
-analytics = SimpleSegment::Client.new(
+analytics = RudderAnalyticsSync::Client.new(
   write_key: 'YOUR_WRITE_KEY',
   stub: true
 )
@@ -88,7 +88,7 @@ analytics = SimpleSegment::Client.new(
 When used in stubbed mode all calls are logged to STDOUT, this can be changed by providing a custom logger object:
 
 ```ruby
-analytics = SimpleSegment::Client.new(
+analytics = RudderAnalyticsSync::Client.new(
   write_key: 'YOUR_WRITE_KEY',
   logger: Rails.logger
 )
@@ -99,7 +99,7 @@ analytics = SimpleSegment::Client.new(
 You can set [options](https://docs.ruby-lang.org/en/2.0.0/Net/HTTP.html#method-c-start) that are passed to `Net::HTTP.start`.
 
 ```ruby
-analytics = SimpleSegment::Client.new(
+analytics = RudderAnalyticsSync::Client.new(
   write_key: 'YOUR_WRITE_KEY',
   http_options: {
     open_timeout: 42,
@@ -119,7 +119,6 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/whatthewhat/simple_segment.
-
 
 ## License
 

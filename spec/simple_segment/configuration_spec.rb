@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe SimpleSegment::Configuration do
+describe RudderAnalyticsSync::Configuration do
   it 'requires a write_key' do
     expect do
       described_class.new(write_key: nil)

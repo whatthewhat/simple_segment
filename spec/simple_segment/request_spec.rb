@@ -2,16 +2,16 @@
 
 require 'spec_helper'
 
-describe SimpleSegment::Request do
+describe RudderAnalyticsSync::Request do
   context 'API errors handling' do
     before(:example) do
-      stub_request(:post, 'https://api.segment.io/v1/track')
+      stub_request(:post, 'https://hosted.rudderlabs.com/v1/track')
         .with(basic_auth: ['key', ''])
         .to_return(status: 500, body: { error: 'Does not compute' }.to_json)
     end
 
     it 'does not raise an error with default client' do
-      client = SimpleSegment::Client.new(write_key: 'key')
+      client = RudderAnalyticsSync::Client.new(write_key: 'key')
       expect do
         described_class.new(client).post('/v1/track', {})
       end.not_to raise_error
@@ -28,7 +28,7 @@ describe SimpleSegment::Request do
         response = res
         exception = e
       end
-      client = SimpleSegment::Client.new(
+      client = RudderAnalyticsSync::Client.new(
         write_key: 'key',
         on_error: error_handler
       )

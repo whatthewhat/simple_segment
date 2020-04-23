@@ -1,17 +1,18 @@
 # frozen_string_literal: true
 
-module SimpleSegment
+module RudderAnalyticsSync
   class Request
-    BASE_URL = 'https://api.segment.io'
+    BASE_URL = 'https://hosted.rudderlabs.com'
     DEFAULT_HEADERS = {
       'Content-Type' => 'application/json',
       'accept' => 'application/json'
     }.freeze
 
-    attr_reader :write_key, :error_handler, :stub, :logger, :http_options
+    attr_reader :write_key, :data_plane_url, :error_handler, :stub, :logger, :http_options
 
     def initialize(client)
       @write_key = client.config.write_key
+      @data_plane_url = client.config.data_plane_url || BASE_URL
       @error_handler = client.config.on_error
       @stub = client.config.stub
       @logger = client.config.logger
@@ -23,7 +24,7 @@ module SimpleSegment
       status_code = nil
       response_body = nil
 
-      uri = URI(BASE_URL)
+      uri = URI(data_plane_url)
       payload = JSON.generate(payload)
       if stub
         logger.debug "stubbed request to \

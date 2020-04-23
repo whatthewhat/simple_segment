@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'logger'
-module SimpleSegment
+module RudderAnalyticsSync
   module Logging
     def self.included(klass)
       klass.extend(self)

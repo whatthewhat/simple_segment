@@ -1,17 +1,18 @@
 # frozen_string_literal: true
 
-require 'simple_segment/logging'
+require 'rudder_analytics_sync/logging'
 
-module SimpleSegment
+module RudderAnalyticsSync
   class Configuration
-    include SimpleSegment::Utils
-    include SimpleSegment::Logging
+    include RudderAnalyticsSync::Utils
+    include RudderAnalyticsSync::Logging
 
-    attr_reader :write_key, :on_error, :stub, :logger, :http_options
+    attr_reader :write_key, :data_plane_url, :on_error, :stub, :logger, :http_options
 
     def initialize(settings = {})
       symbolized_settings = symbolize_keys(settings)
       @write_key = symbolized_settings[:write_key]
+      @data_plane_url = symbolized_settings[:data_plane_url]
       @on_error = symbolized_settings[:on_error] || proc {}
       @stub = symbolized_settings[:stub]
       @logger = default_logger(symbolized_settings[:logger])

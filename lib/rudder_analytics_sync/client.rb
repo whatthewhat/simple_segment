@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'simple_segment/utils'
-require 'simple_segment/configuration'
-require 'simple_segment/operations'
-require 'simple_segment/batch'
+require 'rudder_analytics_sync/utils'
+require 'rudder_analytics_sync/configuration'
+require 'rudder_analytics_sync/operations'
+require 'rudder_analytics_sync/batch'
 
-module SimpleSegment
+module RudderAnalyticsSync
   class Client
-    include SimpleSegment::Utils
+    include RudderAnalyticsSync::Utils
 
     attr_reader :config
 

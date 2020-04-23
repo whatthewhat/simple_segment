@@ -2,17 +2,17 @@
 
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'simple_segment/version'
+require 'rudder_analytics_sync/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'simple_segment'
-  spec.version       = SimpleSegment::VERSION
-  spec.authors       = ['Mikhail Topolskiy']
-  spec.email         = ['mikhail.topolskiy@gmail.com']
+  spec.name          = 'rudder_analytics_sync'
+  spec.version       = RudderAnalyticsSync::VERSION
+  spec.authors       = ['RudderStack']
+  spec.email         = ['arnab@rudderlabs.com']
 
-  spec.summary       = 'A simple synchronous API client for segment.io.'
-  spec.description   = 'SimpleSegment allows for manual control of when and how the events are sent to Segment.'
-  spec.homepage      = 'https://github.com/whatthewhat/simple_segment'
+  spec.summary       = 'Privacy and Security focused Segment-alternative. Ruby SDK (sync)'
+  spec.description   = 'Rudder is a platform for collecting, storing and routing customer event data to dozens of tools. Rudder is open-source, can run in your cloud environment (AWS, GCP, Azure or even your data-centre) and provides a powerful transformation framework to process your event data on the fly.'
+  spec.homepage      = 'https://github.com/rudderlabs/rudder-sdk-ruby-sync'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
