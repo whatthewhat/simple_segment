@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rudder_analytics_sync./utils'
+require 'rudder_analytics_sync/utils'
 
 module RudderAnalyticsSync
   module Operations
