@@ -27,8 +27,16 @@ module RudderAnalyticsSync
       add(Operations::Page, options, __method__)
     end
 
+    def screen(options)
+      add(Operations::Screen, options, __method__)
+    end
+
     def group(options)
       add(Operations::Group, options, __method__)
+    end
+
+    def alias(options)
+      add(Operations::Alias, options, __method__)
     end
 
     def context=(context)
@@ -56,6 +64,8 @@ module RudderAnalyticsSync
     def add(operation_class, options, action)
       operation = operation_class.new(client, symbolize_keys(options))
       operation_payload = operation.build_payload
+      operation_payload[:context] = operation_payload[:context].merge(payload[:context] || {})
+      operation_payload[:integrations] = payload[:integrations] || operation_payload[:integrations]
       operation_payload[:type] = action
       payload[:batch] << operation_payload
     end

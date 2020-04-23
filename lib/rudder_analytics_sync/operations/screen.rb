@@ -2,9 +2,9 @@
 
 module RudderAnalyticsSync
   module Operations
-    class Page < Operation
+    class Screen < Operation
       def call
-        request.post('/v1/page', build_payload)
+        request.post('/v1/screen', build_payload)
       end
 
       def build_payload
@@ -13,7 +13,7 @@ module RudderAnalyticsSync
         base_payload.merge(
           name: options[:name],
           event: options[:name],
-          properties: properties.merge({ name: options[:name] })
+          properties: properties.merge({name: options[:name]})
         )
       end
     end

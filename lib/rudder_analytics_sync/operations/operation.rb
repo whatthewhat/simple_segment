@@ -32,31 +32,39 @@ module RudderAnalyticsSync
       attr_reader :options, :request, :context
 
       def base_payload
-        check_identity!
+        # check_identity!
         current_time = Time.now.utc
 
         anonymous_id = options[:anonymous_id] || uid()
+        user_id = options[:user_id]
         context[:traits] = (context[:traits] || {}) && {
           anonymousId: anonymous_id,
-          userId: options[:user_id] 
         }
 
-        {
-          userId: options[:user_id],
+        if (user_id) 
+          context[:traits] = context[:traits].merge({userId: user_id})
+        end
+
+        payload = {
           anonymousId: anonymous_id,
           context: context,
-          integrations: options[:integrations] || {All: true},
+          integrations: options[:integrations] || { All: true },
           timestamp: maybe_datetime_in_iso8601(options[:timestamp] || Time.now.utc),
           sentAt: maybe_datetime_in_iso8601(current_time),
           messageId: uid(),
           properties: options[:properties] || {}
         }
+
+        if (user_id)
+          payload = payload.merge({userId: user_id})
+        end
+        payload
       end
 
-      def check_identity!
-        raise ArgumentError, 'user_id or anonymous_id must be present' \
-          unless options[:user_id] || options[:anonymous_id]
-      end
+      # def check_identity!
+      #   raise ArgumentError, 'user_id or anonymous_id must be present' \
+      #     unless options[:user_id] || options[:anonymous_id]
+      # end
     end
   end
 end

@@ -8,10 +8,13 @@ module RudderAnalyticsSync
       end
 
       def build_payload
+        raise ArgumentError, 'user_id must be present' \
+          unless options[:user_id]
+
         merged_payload = base_payload.merge(
           traits: options[:traits] && isoify_dates!(options[:traits])
         )
-        merged_payload[:context][:traits] = merged_payload[:context][:traits].merge(options[:traits])
+        merged_payload[:context][:traits] = merged_payload[:context][:traits].merge(options[:traits] || {})
         merged_payload
       end
     end
