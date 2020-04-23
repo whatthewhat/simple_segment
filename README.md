@@ -60,43 +60,5 @@ analytics.batch do |batch|
 end
 ```
 
-### Stub API calls
-
-You can stub your API calls avoiding unecessary requests in development and automated test environments (backwards compatible with the official gem):
-
-```ruby
-analytics = RudderAnalyticsSync::Client.new(
-  write_key: 'YOUR_WRITE_KEY',
-  stub: true
-)
-```
-
-### Configurable Logger
-
-When used in stubbed mode all calls are logged to STDOUT, this can be changed by providing a custom logger object:
-
-```ruby
-analytics = RudderAnalyticsSync::Client.new(
-  write_key: 'YOUR_WRITE_KEY',
-  logger: Rails.logger
-)
-```
-
-### Set HTTP Options
-
-You can set [options](https://docs.ruby-lang.org/en/2.0.0/Net/HTTP.html#method-c-start) that are passed to `Net::HTTP.start`.
-
-```ruby
-analytics = RudderAnalyticsSync::Client.new(
-  write_key: 'YOUR_WRITE_KEY',
-  http_options: {
-    open_timeout: 42,
-    read_timeout: 42,
-    close_on_empty_response: true,
-    # ...
-  }
-)
-```
-
 ## Contact Us
 If you come across any issues while configuring or using RudderStack, please feel free to [contact us](https://rudderstack.com/contact/) or start a conversation on our [Discord](https://discordapp.com/invite/xNEdEGw) channel. We will be happy to help you.
