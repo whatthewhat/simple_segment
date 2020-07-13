@@ -8,14 +8,13 @@ module SimpleSegment
       end
 
       def build_payload
-        raise ArgumentError, 'event name must be present' \
-          unless options[:event]
+        raise ArgumentError, 'event name must be present' unless options[:event]
 
-        properties = options[:properties] && isoify_dates!(options[:properties])
+        properties = options[:properties] || {}
 
         base_payload.merge(
           event: options[:event],
-          properties: properties
+          properties: isoify_dates!(properties)
         )
       end
     end
