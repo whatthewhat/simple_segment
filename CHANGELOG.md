@@ -6,10 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.2.0] - 2020-07-29
+
+### Changed
+- Use an empty hash if no properties were provided to `track` https://github.com/whatthewhat/simple_segment/pull/28
+
 ## [1.1.0] - 2020-04-11
 
 ### Added
-- Added supprt for http_proxy and https_proxy environment variables https://github.com/whatthewhat/simple_segment/pull/26 by @saks
+- Added support for http_proxy and https_proxy environment variables https://github.com/whatthewhat/simple_segment/pull/26 by @saks
 - Added Ruby 2.7 to travis.yml
 
 ## [1.0.0] - 2019-12-12
@@ -25,7 +30,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Date properties are now automatically converted to ISO 8601 to be consistent with the official client https://github.com/whatthewhat/simple_segment/pull/19 by @juanramoncg
 
-[Unreleased]: https://github.com/whatthewhat/simple_segment/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/whatthewhat/simple_segment/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/whatthewhat/simple_segment/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/whatthewhat/simple_segment/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/whatthewhat/simple_segment/compare/v0.3.0...v1.0.0
 [0.3.0]: https://github.com/whatthewhat/simple_segment/compare/v0.2.1...v0.3.0
