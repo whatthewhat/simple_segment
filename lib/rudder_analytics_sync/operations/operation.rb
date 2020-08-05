@@ -37,9 +37,11 @@ module RudderAnalyticsSync
 
         anonymous_id = options[:anonymous_id] || uid()
         user_id = options[:user_id]
-        context[:traits] = (context[:traits] || {}) && {
-          anonymousId: anonymous_id,
-        }
+        context[:traits] = (context[:traits] || {}).merge(
+          {
+            anonymousId: anonymous_id
+          }
+        )
 
         if (user_id) 
           context[:traits] = context[:traits].merge({userId: user_id})
