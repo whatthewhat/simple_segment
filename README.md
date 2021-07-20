@@ -1,6 +1,6 @@
 # SimpleSegment
 
-[![Build Status](https://travis-ci.org/whatthewhat/simple_segment.svg?branch=master)](https://travis-ci.org/whatthewhat/simple_segment)
+![Build Status](https://github.com/whatthewhat/simple_segment/actions/workflows/ci.yml/badge.svg?branch=master)
 
 A simple synchronous Ruby API client for [segment.io](https://segment.io).
 
