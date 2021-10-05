@@ -29,7 +29,8 @@ describe SimpleSegment::Client do
         integrations: {
           all: true
         },
-        timestamp: Time.new(2016, 3, 23)
+        timestamp: Time.new(2016, 3, 23),
+        message_id: 'message-id'
       }
       expected_request_body = {
         'userId' => 'id',
@@ -52,7 +53,8 @@ describe SimpleSegment::Client do
           'all' => true
         },
         'timestamp' => Time.new(2016, 3, 23).iso8601,
-        'sentAt' => now.iso8601
+        'sentAt' => now.iso8601,
+        'messageId' => 'message-id'
       }
       request_stub = stub_request(:post, 'https://api.segment.io/v1/identify')
                      .with(body: expected_request_body, basic_auth: ['WRITE_KEY', ''])
@@ -112,7 +114,8 @@ describe SimpleSegment::Client do
         integrations: {
           all: true
         },
-        timestamp: Time.new(2016, 3, 23)
+        timestamp: Time.new(2016, 3, 23),
+        message_id: 'message-id'
       }
       expected_request_body = {
         'event' => 'Delivered Package',
@@ -136,7 +139,8 @@ describe SimpleSegment::Client do
           'all' => true
         },
         'timestamp' => Time.new(2016, 3, 23).iso8601,
-        'sentAt' => now.iso8601
+        'sentAt' => now.iso8601,
+        'messageId' => 'message-id'
       }
       request_stub = stub_request(:post, 'https://api.segment.io/v1/track')
                      .with(body: expected_request_body, basic_auth: ['WRITE_KEY', ''])
@@ -189,7 +193,8 @@ describe SimpleSegment::Client do
         integrations: {
           all: true
         },
-        timestamp: Time.new(2016, 3, 23)
+        timestamp: Time.new(2016, 3, 23),
+        message_id: 'message-id'
       }
       expected_request_body = {
         'userId' => 'id',
@@ -212,7 +217,8 @@ describe SimpleSegment::Client do
           'all' => true
         },
         'timestamp' => Time.new(2016, 3, 23).iso8601,
-        'sentAt' => now.iso8601
+        'sentAt' => now.iso8601,
+        'messageId' => 'message-id'
       }
       request_stub = stub_request(:post, 'https://api.segment.io/v1/page')
                      .with(body: expected_request_body, basic_auth: ['WRITE_KEY', ''])
@@ -261,7 +267,8 @@ describe SimpleSegment::Client do
         integrations: {
           all: true
         },
-        timestamp: Time.new(2016, 3, 23)
+        timestamp: Time.new(2016, 3, 23),
+        message_id: 'message-id'
       }
       expected_request_body = {
         'userId' => 'id',
@@ -284,7 +291,8 @@ describe SimpleSegment::Client do
           'all' => true
         },
         'timestamp' => Time.new(2016, 3, 23).iso8601,
-        'sentAt' => now.iso8601
+        'sentAt' => now.iso8601,
+        'messageId' => 'message-id'
       }
       request_stub = stub_request(:post, 'https://api.segment.io/v1/group')
                      .with(body: expected_request_body, basic_auth: ['WRITE_KEY', ''])
@@ -327,7 +335,8 @@ describe SimpleSegment::Client do
         integrations: {
           all: true
         },
-        timestamp: Time.new(2016, 3, 23)
+        timestamp: Time.new(2016, 3, 23),
+        message_id: 'message-id'
       }
       expected_request_body = {
         'userId' => 'id',
@@ -344,7 +353,8 @@ describe SimpleSegment::Client do
           'all' => true
         },
         'timestamp' => Time.new(2016, 3, 23).iso8601,
-        'sentAt' => now.iso8601
+        'sentAt' => now.iso8601,
+        'messageId' => 'message-id'
       }
       request_stub = stub_request(:post, 'https://api.segment.io/v1/alias')
                      .with(body: expected_request_body, basic_auth: ['WRITE_KEY', ''])
