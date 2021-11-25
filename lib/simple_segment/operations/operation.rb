@@ -36,7 +36,8 @@ module SimpleSegment
           context: context,
           integrations: options[:integrations],
           timestamp: timestamp(options.fetch(:timestamp, current_time)),
-          sentAt: current_time.iso8601
+          sentAt: current_time.iso8601,
+          messageId: options[:message_id]
         }
       end
 

@@ -22,6 +22,7 @@ module SimpleSegment
     # @option :context [Hash]
     # @option :integrations [Hash]
     # @option :timestamp [#iso8601] (Time.now)
+    # @option :message_id
     def identify(options)
       Operations::Identify.new(self, symbolize_keys(options)).call
     end
@@ -34,6 +35,7 @@ module SimpleSegment
     # @option :context [Hash]
     # @option :integrations [Hash]
     # @option :timestamp [#iso8601] (Time.now)
+    # @option :message_id
     def track(options)
       Operations::Track.new(self, symbolize_keys(options)).call
     end
@@ -46,6 +48,7 @@ module SimpleSegment
     # @option :context [Hash]
     # @option :integrations [Hash]
     # @option :timestamp [#iso8601] (Time.now)
+    # @option :message_id
     def page(options)
       Operations::Page.new(self, symbolize_keys(options)).call
     end
@@ -58,6 +61,7 @@ module SimpleSegment
     # @option :context [Hash]
     # @option :integrations [Hash]
     # @option :timestamp [#iso8601] (Time.now)
+    # @option :message_id
     def group(options)
       Operations::Group.new(self, symbolize_keys(options)).call
     end
@@ -70,6 +74,7 @@ module SimpleSegment
     # @option :context [Hash]
     # @option :integrations [Hash]
     # @option :timestamp [#iso8601] (Time.now)
+    # @option :message_id
     def alias(options)
       Operations::Alias.new(self, symbolize_keys(options)).call
     end
