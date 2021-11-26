@@ -1,12 +1,18 @@
+AllCops:
+  NewCops: enable
+
 Metrics/BlockLength:
   Exclude:
     - '**/*_spec.rb'
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 100
   IgnoreCopDirectives: true
   Exclude:
     - 'simple_segment.gemspec'
 
 Style/Documentation:
+  Enabled: false
+
+Gemspec/RequiredRubyVersion:
   Enabled: false

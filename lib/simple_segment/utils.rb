@@ -7,9 +7,7 @@ module SimpleSegment
     end
 
     def symbolize_keys(hash)
-      hash.each_with_object({}) do |(key, value), result|
-        result[key.to_sym] = value
-      end
+      hash.transform_keys(&:to_sym)
     end
 
     # public: Converts all the date values in the into iso8601 strings in place
@@ -22,8 +20,8 @@ module SimpleSegment
     #         strings
     #
     def isoify_dates(hash)
-      hash.each_with_object({}) do |(k, v), memo|
-        memo[k] = maybe_datetime_in_iso8601(v)
+      hash.transform_values do |v|
+        maybe_datetime_in_iso8601(v)
       end
     end
 

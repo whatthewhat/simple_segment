@@ -8,7 +8,7 @@ module SimpleSegment
     end
 
     def default_logger(logger_option)
-      logger_option || Logger.new(STDOUT)
+      logger_option || Logger.new($stdout)
     end
   end
 end
