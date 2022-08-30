@@ -40,4 +40,20 @@ describe SimpleSegment::Request do
       expect(exception).to be_a(Net::HTTPInternalServerError)
     end
   end
+
+  context 'with custom host' do
+    it 'uses configured host' do
+      request_stub = stub_request(:post, 'https://events.eu1.segmentapis.com/v1/track')
+                     .with(basic_auth: ['key', ''])
+                     .to_return(status: 200)
+
+      client = SimpleSegment::Client.new(
+        write_key: 'key',
+        host: 'events.eu1.segmentapis.com'
+      )
+      described_class.new(client).post('/v1/track', {})
+
+      expect(request_stub).to have_been_requested.once
+    end
+  end
 end

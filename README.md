@@ -110,6 +110,17 @@ analytics = SimpleSegment::Client.new(
 )
 ```
 
+### Configurable Host
+
+You can use [regional segments](https://segment.com/docs/guides/regional-segment/) and send data to the desired region by setting the `host` parameter.
+
+```ruby
+analytics = SimpleSegment::Client.new(
+  write_key: 'YOUR_WRITE_KEY',
+  host: 'events.eu1.segmentapis.com'
+)
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
