@@ -8,7 +8,7 @@ module SimpleSegment
       'accept' => 'application/json'
     }.freeze
 
-    attr_reader :write_key, :error_handler, :stub, :logger, :http_options, :base_url
+    attr_reader :write_key, :error_handler, :stub, :logger, :http_options, :host
 
     def initialize(client)
       @write_key = client.config.write_key
@@ -16,7 +16,7 @@ module SimpleSegment
       @stub = client.config.stub
       @logger = client.config.logger
       @http_options = client.config.http_options
-      @base_url = client.config.base_url || BASE_URL
+      @host ||= client.config.host.present? ? client.config.host : BASE_URL
     end
 
     def post(path, payload, headers: DEFAULT_HEADERS) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
@@ -24,7 +24,7 @@ module SimpleSegment
       status_code = nil
       response_body = nil
 
-      uri = URI(base_url)
+      uri = URI(host)
       payload = JSON.generate(payload)
       if stub
         logger.debug "stubbed request to \
