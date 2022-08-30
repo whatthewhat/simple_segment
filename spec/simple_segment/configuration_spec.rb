@@ -29,6 +29,11 @@ describe SimpleSegment::Configuration do
       config = described_class.new(write_key: 'test')
       expect(config.http_options).to eq(use_ssl: true)
     end
+
+    it 'has a default host' do
+      config = described_class.new(write_key: 'test')
+      expect(config.host).to eq('api.segment.io')
+    end
   end
 
   it 'works with stub' do
@@ -48,5 +53,10 @@ describe SimpleSegment::Configuration do
   it 'accepts an http_options' do
     config = described_class.new(write_key: 'test', http_options: { read_timeout: 42 })
     expect(config.http_options).to eq(use_ssl: true, read_timeout: 42)
+  end
+
+  it 'accepts a host' do
+    config = described_class.new(write_key: 'test', host: 'events.eu1.segmentapis.com')
+    expect(config.host).to eq('events.eu1.segmentapis.com')
   end
 end

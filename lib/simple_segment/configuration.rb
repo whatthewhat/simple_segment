@@ -7,7 +7,9 @@ module SimpleSegment
     include SimpleSegment::Utils
     include SimpleSegment::Logging
 
-    attr_reader :write_key, :on_error, :stub, :logger, :http_options
+    DEFAULT_HOST = 'api.segment.io'
+
+    attr_reader :write_key, :on_error, :stub, :logger, :http_options, :host
 
     def initialize(settings = {})
       symbolized_settings = symbolize_keys(settings)
@@ -17,6 +19,7 @@ module SimpleSegment
       @logger = default_logger(symbolized_settings[:logger])
       @http_options = { use_ssl: true }
                       .merge(symbolized_settings[:http_options] || {})
+      @host = symbolized_settings[:host] || DEFAULT_HOST
       raise ArgumentError, 'Missing required option :write_key' \
         unless @write_key
     end
