@@ -48,7 +48,7 @@ module SimpleSegment
         raise ArgumentError, 'A batch must contain at least one action'
       end
 
-      Request.new(client).post('/v1/import', payload)
+      Request.new(client).post('/v1/batch', payload)
     end
 
     private
@@ -56,7 +56,7 @@ module SimpleSegment
     def add(operation_class, options, action)
       operation = operation_class.new(client, symbolize_keys(options))
       operation_payload = operation.build_payload
-      operation_payload[:action] = action
+      operation_payload[:type] = action
       payload[:batch] << operation_payload
     end
   end
