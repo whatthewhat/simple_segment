@@ -44,9 +44,7 @@ module SimpleSegment
     end
 
     def commit
-      if payload[:batch].length.zero?
-        raise ArgumentError, 'A batch must contain at least one action'
-      end
+      raise ArgumentError, 'A batch must contain at least one action' if payload[:batch].empty?
 
       Request.new(client).post('/v1/batch', payload)
     end

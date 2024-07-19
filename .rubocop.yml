@@ -16,3 +16,6 @@ Style/Documentation:
 
 Gemspec/RequiredRubyVersion:
   Enabled: false
+
+Gemspec/DevelopmentDependencies:
+  Enabled: false
