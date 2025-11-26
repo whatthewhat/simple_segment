@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Use millisecond precision for `timestamp` and `sentAt` fields https://github.com/whatthewhat/simple_segment/pull/42 by [@marcboquet](https://github.com/marcboquet)
+
 ## [1.5.0] - 2022-12-06
 
 ### Changed

@@ -36,7 +36,7 @@ module SimpleSegment
           context: context,
           integrations: options[:integrations],
           timestamp: timestamp(options.fetch(:timestamp, current_time)),
-          sentAt: current_time.iso8601,
+          sentAt: current_time.iso8601(3),
           messageId: options[:message_id]
         }
       end
@@ -48,9 +48,9 @@ module SimpleSegment
 
       def timestamp(timestamp)
         if timestamp.respond_to?(:iso8601)
-          timestamp.iso8601
+          timestamp.iso8601(3)
         else
-          Time.iso8601(timestamp).iso8601
+          Time.iso8601(timestamp).iso8601(3)
         end
       end
     end
