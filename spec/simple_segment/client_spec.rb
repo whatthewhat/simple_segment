@@ -52,8 +52,8 @@ describe SimpleSegment::Client do
         'integrations' => {
           'all' => true
         },
-        'timestamp' => Time.new(2016, 3, 23).iso8601,
-        'sentAt' => now.iso8601,
+        'timestamp' => Time.new(2016, 3, 23).iso8601(3),
+        'sentAt' => now.iso8601(3),
         'messageId' => 'message-id'
       }
       request_stub = stub_request(:post, 'https://api.segment.io/v1/identify')
@@ -138,8 +138,8 @@ describe SimpleSegment::Client do
         'integrations' => {
           'all' => true
         },
-        'timestamp' => Time.new(2016, 3, 23).iso8601,
-        'sentAt' => now.iso8601,
+        'timestamp' => Time.new(2016, 3, 23).iso8601(3),
+        'sentAt' => now.iso8601(3),
         'messageId' => 'message-id'
       }
       request_stub = stub_request(:post, 'https://api.segment.io/v1/track')
@@ -216,8 +216,8 @@ describe SimpleSegment::Client do
         'integrations' => {
           'all' => true
         },
-        'timestamp' => Time.new(2016, 3, 23).iso8601,
-        'sentAt' => now.iso8601,
+        'timestamp' => Time.new(2016, 3, 23).iso8601(3),
+        'sentAt' => now.iso8601(3),
         'messageId' => 'message-id'
       }
       request_stub = stub_request(:post, 'https://api.segment.io/v1/page')
@@ -290,8 +290,8 @@ describe SimpleSegment::Client do
         'integrations' => {
           'all' => true
         },
-        'timestamp' => Time.new(2016, 3, 23).iso8601,
-        'sentAt' => now.iso8601,
+        'timestamp' => Time.new(2016, 3, 23).iso8601(3),
+        'sentAt' => now.iso8601(3),
         'messageId' => 'message-id'
       }
       request_stub = stub_request(:post, 'https://api.segment.io/v1/group')
@@ -352,8 +352,8 @@ describe SimpleSegment::Client do
         'integrations' => {
           'all' => true
         },
-        'timestamp' => Time.new(2016, 3, 23).iso8601,
-        'sentAt' => now.iso8601,
+        'timestamp' => Time.new(2016, 3, 23).iso8601(3),
+        'sentAt' => now.iso8601(3),
         'messageId' => 'message-id'
       }
       request_stub = stub_request(:post, 'https://api.segment.io/v1/alias')
