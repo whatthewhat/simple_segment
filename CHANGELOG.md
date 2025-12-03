@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.6.0] - 2025-12-03
+
+### Changed
 - Use millisecond precision for `timestamp` and `sentAt` fields https://github.com/whatthewhat/simple_segment/pull/42 by [@marcboquet](https://github.com/marcboquet)
 
 ## [1.5.0] - 2022-12-06
@@ -47,7 +50,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Date properties are now automatically converted to ISO 8601 to be consistent with the official client https://github.com/whatthewhat/simple_segment/pull/19 by @juanramoncg
 
-[Unreleased]: https://github.com/whatthewhat/simple_segment/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/whatthewhat/simple_segment/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/whatthewhat/simple_segment/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/whatthewhat/simple_segment/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/whatthewhat/simple_segment/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/whatthewhat/simple_segment/compare/v1.2.0...v1.3.0
