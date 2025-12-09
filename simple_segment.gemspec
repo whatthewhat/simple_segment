@@ -29,5 +29,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'webmock', '~> 3.7'
   spec.metadata = {
     'rubygems_mfa_required' => 'true'
+    'changelog_uri' => 'https://github.com/whatthewhat/simple_segment/blob/master/CHANGELOG.md',
   }
 end
